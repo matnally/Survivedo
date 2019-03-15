@@ -1,0 +1,33 @@
+Set in mansion with lots of rooms
+Go room to room to avoid killer
+Arrive in the hall, killer is in random room. Survive until morning, escape or kill killer?
+
+Like Cluedo? Multiple guests?
+
+If killer near hear stuff
+pick up items in a room to use
+drop items
+Pick up map / building plans to reveal rooms (kitchen, WC, etc...)
+but create map as you go (highlight items, and dropped)
+Kitchen has knifes
+Items used to craft
+Carry limit
+More you carry more noise you make / killer hears you move
+defend yourself
+Distract
+Hide in places
+Turn lights on and off (off = can't see. on = killer can see)
+MOVE
+INTERACT
+HIDE
+FEAR?
+List of items can craft (alcohol + table cloth OR cleaning fluid + tea towel = molatov)
+
+CONFIG
+GAME
+PLAYER
+KILLER
+ROOM
+ITEM
+ITEM-CRAFT
+MAP
