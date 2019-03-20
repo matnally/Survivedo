@@ -1,14 +1,11 @@
 
 function gameInit() {
 
-console.log(createMap());
-
+  mapCreate();
 
 } //function
 
 function gameStart() {
-
-  mapCreate();
 
 } //function
 

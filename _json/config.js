@@ -1,5 +1,5 @@
 
 var JSONconfig = [{
   //MAP
-  "mapRooms": 10
+  "mapRooms": 9
 }];
