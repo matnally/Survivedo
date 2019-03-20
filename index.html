@@ -37,16 +37,28 @@
 </head>
 <body>
 
-  <section id="secSettings">
 
-    <div class="divTable">
-      <div class="divRow">
-        <div class="divCell textRight"><p>????</p></div> <!-- divCell -->
-        <div class="divCell"><span id="spnSelCurrency"></span></div> <!-- divCell -->
-      </div> <!-- divRow -->
-    </div> <!-- divTable -->
+<p>
+[0,1,2,3]
+<br>
+[4,5,6,7]
+<br>
+[8,9,10,11]
+<br>
+[12,13,14,15]
+</p>
 
-  </section>
+<br>
+
+<button onClick="gridMove('N');">N</button>
+<button onClick="gridMove('E');">E</button>
+<button onClick="gridMove('S');">S</button>
+<button onClick="gridMove('W');">W</button>
+
+<br>
+<br>
+
+<button onClick="mapCreate();">Create Map</button>
 
   <script>
     $(document).ready(function() {
