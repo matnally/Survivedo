@@ -8,3 +8,9 @@ function defGetArrayPositionFromID(intID, JSONtoUse) {
   } //for
   return intTemp;
 }
+
+
+function defUpdateElement(elemName, strTemp) {
+  //update an element with text
+  document.getElementById(elemName).innerHTML = strTemp;
+} //function

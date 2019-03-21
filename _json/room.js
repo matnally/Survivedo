@@ -54,5 +54,23 @@ var JSONroom = [
   	,"description": "room9desc"
     ,"item"         : []
     ,"exit"         : []
+  },{
+    "id"            : 10
+    ,"name": "room9"
+  	,"description": "room10desc"
+    ,"item"         : []
+    ,"exit"         : []
+  },{
+    "id"            : 11
+    ,"name": "room9"
+  	,"description": "room11desc"
+    ,"item"         : []
+    ,"exit"         : []
+  },{
+    "id"            : 12
+    ,"name": "room9"
+  	,"description": "room12desc"
+    ,"item"         : []
+    ,"exit"         : []
   }
 ];

@@ -17,6 +17,7 @@
   <!-- LOGIC -->
   <!-- <script src="_js/config.js"></script> -->
   <script src="_js/game.js"></script>
+  <script src="_js/grid.js"></script>
   <!-- <script src="_js/item.js"></script>
   <script src="_js/itemCraft.js"></script> -->
   <script src="_js/map.js"></script>
@@ -37,28 +38,25 @@
 </head>
 <body>
 
-
-<p>
-[0,1,2,3]
-<br>
-[4,5,6,7]
-<br>
-[8,9,10,11]
-<br>
-[12,13,14,15]
-</p>
+<div id="divGrid"></div>
 
 <br>
+<p>Map move</p>
+<button onClick="mapMoveStart('N');">N</button>
+<button onClick="mapMoveStart('E');">E</button>
+<button onClick="mapMoveStart('S');">S</button>
+<button onClick="mapMoveStart('W');">W</button>
 
+<br>
+<br>
+
+<p>Grid move</p>
 <button onClick="gridMove('N');">N</button>
 <button onClick="gridMove('E');">E</button>
 <button onClick="gridMove('S');">S</button>
 <button onClick="gridMove('W');">W</button>
 
-<br>
-<br>
 
-<button onClick="mapCreate();">Create Map</button>
 
   <script>
     $(document).ready(function() {
