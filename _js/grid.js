@@ -1,56 +1,40 @@
 
-function gridCreate() {
-  //create global grid
-  arrGird = [
-    [[0,null],[1,null],[2,null],[3,null]]
-    ,[[4,null],[5,null],[6,null],[7,null]]
-    ,[[8,null],[9,null],[10,null],[11,null]]
-    ,[[12,null],[13,null],[14,null],[15,null]]
-    ,[[16,null],[17,null],[18,null],[19,null]]
-    ,[[20,null],[21,null],[22,null],[23,null]]
-  ];
+function gridCreate(intRows, intColumns) {
+  //creates multi dimensional array to use as a grid to create a map
+  var arrTemp = [];
+  var i = 0;
+  for (var r=0;r<intRows;r++) {
+    arrTemp[r] = []; // Create subArray
+    for(var c=0;c<intColumns;c++) {
+      arrTemp[r].push([i,null]);
+      i++;
+    } //for
+  } //for
+  return arrTemp;
 } //function
 
 
-function gridMove(strDirection) {
-
-  if (gridCheckIfOffGrid(strDirection) == true) {
-    // console.log("Can't move " + strDirection);
-  } else {
-
-    var intCurrentGridPositions = gridGetGridPosition(JSONplayer[0].roomCurrent);
-        intCurrentGridRow = intCurrentGridPositions.intCurrentGridRow;
-        intCurrentGridColumn = intCurrentGridPositions.intCurrentGridColumn;
-
-    //move
-    switch (strDirection) {
-      case "N":
-        intCurrentGridRow--;
-      break;
-      case "E":
-        intCurrentGridColumn++;
-      break;
-      case "S":
-        intCurrentGridRow++;
-      break;
-      case "W":
-        intCurrentGridColumn--;
-      break;
-    } //switch
-
-    JSONplayer[0].roomCurrent = arrGird[intCurrentGridRow][intCurrentGridColumn][0];
-
-  } //if
-
-} //function
+function gridMove(strDirection, intRoom) {
+  var intGridPositionsNew = [];
+  var intGridPositionsNewRow = 0;
+  var intGridPositionsNewColumn = 0;
+  intGridPositionsNew = gridGetGridPositionFromMove(strDirection, intRoom);
+    intGridPositionsNewRow = intGridPositionsNew.intGridPositionsNewRow;
+    intGridPositionsNewColumn = intGridPositionsNew.intGridPositionsNewColumn;
+  return arrGird[intGridPositionsNewRow][intGridPositionsNewColumn][0];
+  } //function
 
 
-function gridCheckIfOffGrid(strDirection) {
+function gridCheckIfOffGrid(strDirection, intRoom) {
   //check if can move to the direction
 
-  var intCurrentGridPositions = gridGetGridPosition(JSONplayer[0].roomCurrent);
-      intCurrentGridRow = intCurrentGridPositions.intCurrentGridRow;
-      intCurrentGridColumn = intCurrentGridPositions.intCurrentGridColumn;
+  var intCurrentGridPositions = [];
+  var intCurrentGridRow = 0;
+  var intCurrentGridColumn = 0;
+
+  intCurrentGridPositions = gridGetGridPositionFromRoom(intRoom);
+    intCurrentGridRow = intCurrentGridPositions.intCurrentGridRow;
+    intCurrentGridColumn = intCurrentGridPositions.intCurrentGridColumn;
 
   var boolTemp = false;
   switch (strDirection) {
@@ -86,17 +70,12 @@ function gridCheckIfOffGrid(strDirection) {
 //// SUPPORTING LOGIC ////
 //////////////////////////
 
-function gridGetRandomPosition() {
-  return Math.floor(Math.random() * Math.floor(16)); // 0 - 15
-} //function
-
-function gridGetGridPosition(intRoomCurrent) {
-  //find grid position
+function gridGetGridPositionFromRoom(intRoom) {
   var intCurrentGridRow = 0;
   var intCurrentGridColumn = 0;
   for (g in arrGird) {
     for (gs in arrGird[g]) {
-      if (arrGird[g][gs][0] == intRoomCurrent) {
+      if (arrGird[g][gs][0] == intRoom) {
         intCurrentGridRow = g;
         intCurrentGridColumn = gs;
       } //if
@@ -105,5 +84,33 @@ function gridGetGridPosition(intRoomCurrent) {
   return {
     "intCurrentGridRow": parseInt(intCurrentGridRow)
     ,"intCurrentGridColumn": parseInt(intCurrentGridColumn)
-  }
+  } //return
+} //function
+
+function gridGetGridPositionFromMove(strDirection, intRoom) {
+  var intCurrentGridPositions = gridGetGridPositionFromRoom(intRoom);
+  var intCurrentGridRow = intCurrentGridPositions.intCurrentGridRow;
+  var intCurrentGridColumn = intCurrentGridPositions.intCurrentGridColumn;
+  switch (strDirection) {
+    case "N":
+      intCurrentGridRow--;
+    break;
+    case "E":
+      intCurrentGridColumn++;
+    break;
+    case "S":
+      intCurrentGridRow++;
+    break;
+    case "W":
+      intCurrentGridColumn--;
+    break;
+  } //switch
+  return {
+    "intGridPositionsNewRow": parseInt(intCurrentGridRow)
+    ,"intGridPositionsNewColumn": parseInt(intCurrentGridColumn)
+  } //return
+} //function
+
+function gridGetRandomPosition() {
+  return Math.floor(Math.random() * Math.floor(16)); // 0 - 15
 } //function

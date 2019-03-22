@@ -4,7 +4,7 @@ var JSONroom = [
     "id"            : 1
     ,"name"         : "Start Room"
   	,"description"  : "room1desc"
-    ,"item"         : []
+    ,"item"         : [1]
     ,"exit"         : []
   },{
     "id"            : 2
@@ -56,19 +56,19 @@ var JSONroom = [
     ,"exit"         : []
   },{
     "id"            : 10
-    ,"name": "room9"
+    ,"name": "room10"
   	,"description": "room10desc"
     ,"item"         : []
     ,"exit"         : []
   },{
     "id"            : 11
-    ,"name": "room9"
+    ,"name": "room11"
   	,"description": "room11desc"
     ,"item"         : []
     ,"exit"         : []
   },{
     "id"            : 12
-    ,"name": "room9"
+    ,"name": "room12"
   	,"description": "room12desc"
     ,"item"         : []
     ,"exit"         : []

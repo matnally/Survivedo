@@ -17,6 +17,7 @@
   <!-- LOGIC -->
   <!-- <script src="_js/config.js"></script> -->
   <script src="_js/game.js"></script>
+  <script src="_js/gui.js"></script>
   <script src="_js/grid.js"></script>
   <!-- <script src="_js/item.js"></script>
   <script src="_js/itemCraft.js"></script> -->
@@ -39,24 +40,15 @@
 <body>
 
 <div id="divGrid"></div>
-
 <br>
 <p>Map move</p>
-<button onClick="mapMoveStart('N');">N</button>
-<button onClick="mapMoveStart('E');">E</button>
-<button onClick="mapMoveStart('S');">S</button>
-<button onClick="mapMoveStart('W');">W</button>
+<button id="butMapMoveN" onClick="mapMoveStart('N');">N</button>
+<button id="butMapMoveE" onClick="mapMoveStart('E');">E</button>
+<button id="butMapMoveS" onClick="mapMoveStart('S');">S</button>
+<button id="butMapMoveW" onClick="mapMoveStart('W');">W</button>
 
-<br>
-<br>
-
-<p>Grid move</p>
-<button onClick="gridMove('N');">N</button>
-<button onClick="gridMove('E');">E</button>
-<button onClick="gridMove('S');">S</button>
-<button onClick="gridMove('W');">W</button>
-
-
+<br><br>
+<button onClick="defJSONshow('arrGird');">Show Grid</button>
 
   <script>
     $(document).ready(function() {

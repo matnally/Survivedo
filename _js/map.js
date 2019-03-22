@@ -1,94 +1,83 @@
 
-function mapMoveStart(strDirection) {
-
-  mapMove(strDirection);
-  defUpdateElement("divGrid", mapShow(JSONplayer[0].roomCurrent));
-
-} //function
-
-
 function mapCreate() {
-
   var strDirection = "";
-  var intCurrentGridPositions =[];
+  var intRoomsToCreate = 0
+  var intCurrentGridPositions = [];
+  var intCurrentGridRow = 0;
+  var intCurrentGridColumn = 0;
   var intRandomRoom = 0;
-  var arrTempRoom = [];
-  var intRoomsToCreate = 0;
-
-  //get all room ids
-  for (r in JSONroom) {
-    arrTempRoom.push(JSONroom[r].id);
-  } //for
-  intRoomsToCreate = arrTempRoom.length;
-
-  JSONplayer[0].roomCurrent = gridGetRandomPosition();
-
+  var arrRoomIDs = [];
+  var intGridPosition = 0;
+  arrRoomIDs = defGetAllValuesByProperty(JSONroom, "id"); //get all room ids
+  intRoomsToCreate = arrRoomIDs.length;
+  intGridPosition = gridGetRandomPosition(); //inital random grid position to start from
   do { //allocate rooms
-
     do { //choose a direction within the grid
       strDirection = mapDirectionGetRandom();
-    } while (gridCheckIfOffGrid(strDirection)); //check if direction to go is within grid
-
+    } while (gridCheckIfOffGrid(strDirection, intGridPosition)); //check if direction to go is within grid
     //check if grid position is not allocated a room
-    intCurrentGridPositions = gridGetGridPosition(mapMovePotential(strDirection));
-        intCurrentGridRow = intCurrentGridPositions.intCurrentGridRow;
-        intCurrentGridColumn = intCurrentGridPositions.intCurrentGridColumn;
+    intCurrentGridPositions = gridGetGridPositionFromRoom(mapMovePotential(strDirection, intGridPosition));
+      intCurrentGridRow = intCurrentGridPositions.intCurrentGridRow;
+      intCurrentGridColumn = intCurrentGridPositions.intCurrentGridColumn;
+    //if grid position not allocated a room, get random room from availible IDs in arrRoomIDs
     if (arrGird[intCurrentGridRow][intCurrentGridColumn][1] == null) {
-      intRandomRoom = Math.floor(Math.random() * arrTempRoom.length); //get random room
-
-      if ((JSONroom[arrTempRoom[intRandomRoom]-1].id) == 1) //found start room so make it player's roomStart
+      intRandomRoom = Math.floor(Math.random() * arrRoomIDs.length); //get random room
+      //if start room make it player's roomStart
+      if ((JSONroom[arrRoomIDs[intRandomRoom]-1].id) == 1)
         JSONplayer[0].roomStart = arrGird[intCurrentGridRow][intCurrentGridColumn][0];
-
-      arrGird[intCurrentGridRow][intCurrentGridColumn][1] = JSONroom[arrTempRoom[intRandomRoom]-1].name; //allocate room to
-      arrTempRoom.splice((intRandomRoom), 1); //remove random room from temp array
+      arrGird[intCurrentGridRow][intCurrentGridColumn][1] = JSONroom[arrRoomIDs[intRandomRoom]-1].id; //allocate room to
+      arrRoomIDs.splice((intRandomRoom), 1); //remove random room from temp array
       intRoomsToCreate--;
-
     } //if
-
-    gridMove(strDirection);
-
+    if (gridCheckIfOffGrid(strDirection, intGridPosition) != true) {
+      intGridPosition = gridMove(strDirection, intGridPosition); //update current room from grid move
+    } //if
   } while ( intRoomsToCreate > 0 );
+  JSONplayer[0].roomCurrent = JSONplayer[0].roomStart; //finished creating map so make start room current room
+} //function
 
-  JSONplayer[0].roomCurrent = JSONplayer[0].roomStart; //finished creating so make start room current room
+
+function mapMoveStart(strDirection) {
+
+  mapMove(strDirection, JSONplayer[0].roomCurrent);
+  guiButtonDirectionUpdate(JSONplayer[0].roomCurrent);
+
+  mapMoveEnd();
 
 } //function
 
 
-function mapMove(strDirection) {
+function mapMoveEnd() {
+  guiButtonDirectionUpdate(JSONplayer[0].roomCurrent);
+  defUpdateElement("divGrid", mapShow(JSONplayer[0].roomCurrent));
+} //function
 
-  if (gridCheckIfOffGrid(strDirection) == true) {
-    // console.log("Can't move " + strDirection);
+function mapMove(strDirection, intRoom) {
+
+  var intCurrentGridPositions = [];
+  var intCurrentGridRow = 0;
+  var intCurrentGridColumn = 0;
+  var intGridPositionsNew = [];
+  var intGridPositionsNewRow = 0;
+  var intGridPositionsNewColumn = 0;
+
+  if (gridCheckIfOffGrid(strDirection, intRoom) == true) {
     console.log("No grid to the " + strDirection)
   } else {
 
-    var intCurrentGridPositions = gridGetGridPosition(mapMovePotential(strDirection));
-        intCurrentGridRow = intCurrentGridPositions.intCurrentGridRow;
-        intCurrentGridColumn = intCurrentGridPositions.intCurrentGridColumn;
+    intCurrentGridPositions = gridGetGridPositionFromRoom(mapMovePotential(strDirection, intRoom));
+      intCurrentGridRow = intCurrentGridPositions.intCurrentGridRow;
+      intCurrentGridColumn = intCurrentGridPositions.intCurrentGridColumn;
 
     if (arrGird[intCurrentGridRow][intCurrentGridColumn][1] == null) {
       console.log("No room to the " + strDirection)
     } else {
 
-      intCurrentGridPositions = gridGetGridPosition(JSONplayer[0].roomCurrent);
-        intCurrentGridRow = intCurrentGridPositions.intCurrentGridRow;
-        intCurrentGridColumn = intCurrentGridPositions.intCurrentGridColumn;
+      intGridPositionsNew = gridGetGridPositionFromMove(strDirection, intRoom);
+        intGridPositionsNewRow = intGridPositionsNew.intGridPositionsNewRow;
+        intGridPositionsNewColumn = intGridPositionsNew.intGridPositionsNewColumn;
 
-      //move
-      switch (strDirection) {
-        case "N":
-          intCurrentGridRow--;
-        break;
-        case "E":
-          intCurrentGridColumn++;
-        break;
-        case "S":
-          intCurrentGridRow++;
-        break;
-        case "W":
-          intCurrentGridColumn--;
-        break;
-      } //switch
-      JSONplayer[0].roomCurrent = arrGird[intCurrentGridRow][intCurrentGridColumn][0];
+      JSONplayer[0].roomCurrent = arrGird[intGridPositionsNewRow][intGridPositionsNewColumn][0];
 
     } //if
 
@@ -97,30 +86,11 @@ function mapMove(strDirection) {
 } //function
 
 
-function mapMovePotential(strDirection) {
-
-  var intCurrentGridPositions = gridGetGridPosition(JSONplayer[0].roomCurrent);
-      intCurrentGridRow = intCurrentGridPositions.intCurrentGridRow;
-      intCurrentGridColumn = intCurrentGridPositions.intCurrentGridColumn;
-
-  //move
-  switch (strDirection) {
-    case "N":
-      intCurrentGridRow--;
-    break;
-    case "E":
-      intCurrentGridColumn++;
-    break;
-    case "S":
-      intCurrentGridRow++;
-    break;
-    case "W":
-      intCurrentGridColumn--;
-    break;
-  } //switch
-
-  return arrGird[intCurrentGridRow][intCurrentGridColumn][0];
-
+function mapMovePotential(strDirection, intRoom) {
+  var intGridPositionsNew = gridGetGridPositionFromMove(strDirection, intRoom);
+  var intGridPositionsNewRow = intGridPositionsNew.intGridPositionsNewRow;
+  var intGridPositionsNewColumn = intGridPositionsNew.intGridPositionsNewColumn;
+  return arrGird[intGridPositionsNewRow][intGridPositionsNewColumn][0];
 } //function
 
 
@@ -146,12 +116,20 @@ function mapShow(intRoom) {
 
       if (arrGird[g][gs][1] != null) {
 
-        intTemp += arrGird[g][gs][0];
-        intTemp += '<br>';
-        intTemp += arrGird[g][gs][1];
+        // intTemp += arrGird[g][gs][0];
+        // intTemp += '<br>';
+        // intTemp += arrGird[g][gs][1];
 
         if (arrGird[g][gs][0] == intRoom)
-          intTemp += '<br>HERE';
+        intTemp += "<strong>" + arrGird[g][gs][1] + "</strong>";
+        else
+        intTemp += arrGird[g][gs][1];
+
+
+for (i in JSONroom[arrGird[g][gs][1]-1].item) {
+  console.log("Item ID : " + JSONroom[arrGird[g][gs][1]-1].item[i])
+  intTemp += JSONitem[0].name;
+} //for
 
       } //if
 

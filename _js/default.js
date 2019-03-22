@@ -7,10 +7,23 @@ function defGetArrayPositionFromID(intID, JSONtoUse) {
       intTemp = r;
   } //for
   return intTemp;
-}
+} //function
 
 
 function defUpdateElement(elemName, strTemp) {
-  //update an element with text
   document.getElementById(elemName).innerHTML = strTemp;
+} //function
+
+
+function defGetAllValuesByProperty(JSONtoUse, strProperty) {
+  var arrTemp = [];
+  for (p in JSONtoUse) {
+    arrTemp.push(JSONtoUse[p][strProperty]);
+  } //for
+  return arrTemp;
+} //function
+
+
+function defJSONshow(strJSON) { //ADMIN
+  console.log(JSON.stringify(window[strJSON]));
 } //function

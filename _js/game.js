@@ -1,9 +1,10 @@
 
 function gameInit() {
 
-  gridCreate();
+  arrGird = gridCreate(6, 4); //rows, columns
   mapCreate();
-  defUpdateElement("divGrid", mapShow(JSONplayer[0].roomCurrent));
+
+  mapMoveEnd();
 
 } //function
 
