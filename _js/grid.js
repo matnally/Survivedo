@@ -14,47 +14,47 @@ function gridCreate(intRows, intColumns) {
 } //function
 
 
-function gridMove(strDirection, intRoom) {
+function gridMove(strDirection, intGridPosition) {
   var intGridPositionsNew = [];
   var intGridPositionsNewRow = 0;
   var intGridPositionsNewColumn = 0;
-  intGridPositionsNew = gridGetGridPositionFromMove(strDirection, intRoom);
+  intGridPositionsNew = gridGetGridPositionFromMove(strDirection, intGridPosition);
     intGridPositionsNewRow = intGridPositionsNew.intGridPositionsNewRow;
     intGridPositionsNewColumn = intGridPositionsNew.intGridPositionsNewColumn;
   return arrGird[intGridPositionsNewRow][intGridPositionsNewColumn][0];
   } //function
 
 
-function gridCheckIfOffGrid(strDirection, intRoom) {
+function gridCheckIfOffGrid(strDirection, intGridPosition) {
   //check if can move to the direction
 
-  var intCurrentGridPositions = [];
-  var intCurrentGridRow = 0;
-  var intCurrentGridColumn = 0;
+  var intGridPositionsCurrent = [];
+  var intGridRowCurrent = 0;
+  var intGridColumnCurrent = 0;
 
-  intCurrentGridPositions = gridGetGridPositionFromRoom(intRoom);
-    intCurrentGridRow = intCurrentGridPositions.intCurrentGridRow;
-    intCurrentGridColumn = intCurrentGridPositions.intCurrentGridColumn;
+  intGridPositionsCurrent = gridGetGridPositionsFromGridPosition(intGridPosition);
+    intGridRowCurrent = intGridPositionsCurrent.intGridRowCurrent;
+    intGridColumnCurrent = intGridPositionsCurrent.intGridColumnCurrent;
 
   var boolTemp = false;
   switch (strDirection) {
     case "N":
-      if ((intCurrentGridRow - 1) < 0) { // console.log("Gone too far NORTH");
+      if ((intGridRowCurrent - 1) < 0) { // console.log("Gone too far NORTH");
         boolTemp = true;
       } //if
     break;
     case "E":
-      if ((intCurrentGridColumn + 1) >= arrGird[intCurrentGridRow].length) { // console.log("Gone too far EAST");
+      if ((intGridColumnCurrent + 1) >= arrGird[intGridRowCurrent].length) { // console.log("Gone too far EAST");
         boolTemp = true;
       } //if
     break;
     case "S":
-      if ((intCurrentGridRow + 1) > (arrGird.length-1)) { // console.log("Gone too far SOUTH");
+      if ((intGridRowCurrent + 1) > (arrGird.length-1)) { // console.log("Gone too far SOUTH");
         boolTemp = true;
       } //if
     break;
     case "W":
-      if ((intCurrentGridColumn - 1) < 0) { // console.log("Gone too far WEST");
+      if ((intGridColumnCurrent - 1) < 0) { // console.log("Gone too far WEST");
         boolTemp = true;
       } //if
     break;
@@ -70,44 +70,56 @@ function gridCheckIfOffGrid(strDirection, intRoom) {
 //// SUPPORTING LOGIC ////
 //////////////////////////
 
-function gridGetGridPositionFromRoom(intRoom) {
-  var intCurrentGridRow = 0;
-  var intCurrentGridColumn = 0;
+function gridGetRoomFromGridPosition(intGridPosition) {
+  var intTemp = 0;
   for (g in arrGird) {
     for (gs in arrGird[g]) {
-      if (arrGird[g][gs][0] == intRoom) {
-        intCurrentGridRow = g;
-        intCurrentGridColumn = gs;
+      if (arrGird[g][gs][0] == intGridPosition)
+        intTemp = arrGird[g][gs][1];
+    } //for
+  } //for
+  return intTemp;
+} //function
+
+function gridGetGridPositionsFromGridPosition(intGridPosition) {
+  //returns the row and column from the current position on the grid
+  var intGridRowCurrent = 0;
+  var intGridColumnCurrent = 0;
+  for (g in arrGird) {
+    for (gs in arrGird[g]) {
+      if (arrGird[g][gs][0] == intGridPosition) {
+        intGridRowCurrent = g;
+        intGridColumnCurrent = gs;
       } //if
     } //for
   } //for
   return {
-    "intCurrentGridRow": parseInt(intCurrentGridRow)
-    ,"intCurrentGridColumn": parseInt(intCurrentGridColumn)
+    "intGridRowCurrent": parseInt(intGridRowCurrent)
+    ,"intGridColumnCurrent": parseInt(intGridColumnCurrent)
   } //return
 } //function
 
-function gridGetGridPositionFromMove(strDirection, intRoom) {
-  var intCurrentGridPositions = gridGetGridPositionFromRoom(intRoom);
-  var intCurrentGridRow = intCurrentGridPositions.intCurrentGridRow;
-  var intCurrentGridColumn = intCurrentGridPositions.intCurrentGridColumn;
+function gridGetGridPositionFromMove(strDirection, intGridPosition) {
+  var intGridPositionsCurrent = gridGetGridPositionsFromGridPosition(intGridPosition);
+  var intGridRowCurrent = intGridPositionsCurrent.intGridRowCurrent;
+  var intGridColumnCurrent = intGridPositionsCurrent.intGridColumnCurrent;
   switch (strDirection) {
     case "N":
-      intCurrentGridRow--;
+      intGridRowCurrent--;
     break;
     case "E":
-      intCurrentGridColumn++;
+      intGridColumnCurrent++;
     break;
     case "S":
-      intCurrentGridRow++;
+      intGridRowCurrent++;
     break;
     case "W":
-      intCurrentGridColumn--;
+      intGridColumnCurrent--;
     break;
   } //switch
   return {
-    "intGridPositionsNewRow": parseInt(intCurrentGridRow)
-    ,"intGridPositionsNewColumn": parseInt(intCurrentGridColumn)
+    "intGridPositionsNewRow": parseInt(intGridRowCurrent)
+    ,"intGridPositionsNewColumn": parseInt(intGridColumnCurrent)
   } //return
 } //function
 

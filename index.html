@@ -19,8 +19,8 @@
   <script src="_js/game.js"></script>
   <script src="_js/gui.js"></script>
   <script src="_js/grid.js"></script>
-  <!-- <script src="_js/item.js"></script>
-  <script src="_js/itemCraft.js"></script> -->
+  <script src="_js/item.js"></script>
+  <!-- <script src="_js/itemCraft.js"></script> -->
   <script src="_js/map.js"></script>
   <!-- <script src="_js/opponent.js"></script>
   <script src="_js/player.js"></script> -->
@@ -46,6 +46,13 @@
 <button id="butMapMoveE" onClick="mapMoveStart('E');">E</button>
 <button id="butMapMoveS" onClick="mapMoveStart('S');">S</button>
 <button id="butMapMoveW" onClick="mapMoveStart('W');">W</button>
+<br><br>
+<button id="itemPickUp" onClick="itemPickUp(1);">Pick up item</button>
+
+<br><br>
+<button id="itemPickUp" onClick="gridGetRoomFromGridPosition(JSONplayer[0].gridCurrent);">gridGetRoomFromGridPosition</button>
+
+
 
 <br><br>
 <button onClick="defJSONshow('arrGird');">Show Grid</button>

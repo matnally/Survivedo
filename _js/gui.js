@@ -1,19 +1,19 @@
 
-function guiButtonDirectionUpdate(intRoom) {
+function guiButtonDirectionUpdate(intGridPosition) {
   //enables / disable buttons you can travel
-  var intCurrentGridPositions = [];
-  var intCurrentGridRow = 0;
-  var intCurrentGridColumn = 0;
+  var intGridPositionsCurrent = [];
+  var intGridRowCurrent = 0;
+  var intGridColumnCurrent = 0;
   var arrDirection = ["N","E","S","W"];
   for (var i=0;i<arrDirection.length;i++) {
-    if (gridCheckIfOffGrid(arrDirection[i], intRoom) == true) {
+    if (gridCheckIfOffGrid(arrDirection[i], intGridPosition) == true) {
       document.getElementById("butMapMove" + arrDirection[i]).disabled = true;
     } else {
       document.getElementById("butMapMove" + arrDirection[i]).disabled = false;
-      intCurrentGridPositions = gridGetGridPositionFromRoom(mapMovePotential(arrDirection[i], intRoom));
-        intCurrentGridRow = intCurrentGridPositions.intCurrentGridRow;
-        intCurrentGridColumn = intCurrentGridPositions.intCurrentGridColumn;
-      if (arrGird[intCurrentGridRow][intCurrentGridColumn][1] == null) {
+      intGridPositionsCurrent = gridGetGridPositionsFromGridPosition(mapMovePotential(arrDirection[i], intGridPosition));
+        intGridRowCurrent = intGridPositionsCurrent.intGridRowCurrent;
+        intGridColumnCurrent = intGridPositionsCurrent.intGridColumnCurrent;
+      if (arrGird[intGridRowCurrent][intGridColumnCurrent][1] == null) {
         document.getElementById("butMapMove" + arrDirection[i]).disabled = true;
       } //if
     } //if

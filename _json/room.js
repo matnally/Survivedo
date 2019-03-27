@@ -4,19 +4,19 @@ var JSONroom = [
     "id"            : 1
     ,"name"         : "Start Room"
   	,"description"  : "room1desc"
-    ,"item"         : [1]
+    ,"item"         : [3,1]
     ,"exit"         : []
   },{
     "id"            : 2
     ,"name": "room2"
   	,"description": "room2desc"
-    ,"item"         : []
+    ,"item"         : [2]
     ,"exit"         : []
   },{
     "id"            : 3
     ,"name": "room3"
   	,"description": "room3desc"
-    ,"item"         : []
+    ,"item"         : [5,4]
     ,"exit"         : []
   },{
     "id"            : 4

@@ -1,13 +1,18 @@
 
-function defGetArrayPositionFromID(intID, JSONtoUse) {
+function defGetArrayPositionFromProperty(intToFind, strProperty, JSONtoUse) {
+  //TODO: better!
   var intTemp = 0;
   var JSONtemp = window[JSONtoUse];
   for (r in JSONtemp) {
-    if (intID == JSONtemp[r].id)
+    if (intToFind == JSONtemp[r][strProperty])
       intTemp = r;
   } //for
   return intTemp;
 } //function
+
+
+
+
 
 
 function defUpdateElement(elemName, strTemp) {
