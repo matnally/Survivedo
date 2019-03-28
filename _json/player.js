@@ -1,5 +1,4 @@
 
 var JSONplayer = [{
-  "roomStart"     : 0
-  ,"roomCurrent"  : 0
+  "gridCurrent"  : 0
 }];

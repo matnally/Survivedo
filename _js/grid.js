@@ -1,6 +1,5 @@
 
 function gridCreate(intRows, intColumns) {
-  //creates multi dimensional array to use as a grid to create a map
   var arrTemp = [];
   var i = 0;
   for (var r=0;r<intRows;r++) {
@@ -13,7 +12,6 @@ function gridCreate(intRows, intColumns) {
   return arrTemp;
 } //function
 
-
 function gridMove(strDirection, intGridPosition) {
   var intGridPositionsNew = [];
   var intGridPositionsNewRow = 0;
@@ -22,48 +20,34 @@ function gridMove(strDirection, intGridPosition) {
     intGridPositionsNewRow = intGridPositionsNew.intGridPositionsNewRow;
     intGridPositionsNewColumn = intGridPositionsNew.intGridPositionsNewColumn;
   return arrGird[intGridPositionsNewRow][intGridPositionsNewColumn][0];
-  } //function
-
+} //function
 
 function gridCheckIfOffGrid(strDirection, intGridPosition) {
-  //check if can move to the direction
-
+  var boolTemp = false;
   var intGridPositionsCurrent = [];
   var intGridRowCurrent = 0;
   var intGridColumnCurrent = 0;
-
   intGridPositionsCurrent = gridGetGridPositionsFromGridPosition(intGridPosition);
     intGridRowCurrent = intGridPositionsCurrent.intGridRowCurrent;
     intGridColumnCurrent = intGridPositionsCurrent.intGridColumnCurrent;
-
-  var boolTemp = false;
   switch (strDirection) {
     case "N":
-      if ((intGridRowCurrent - 1) < 0) { // console.log("Gone too far NORTH");
-        boolTemp = true;
-      } //if
+      if ((intGridRowCurrent - 1) < 0) boolTemp = true; //too far NORTH
     break;
     case "E":
-      if ((intGridColumnCurrent + 1) >= arrGird[intGridRowCurrent].length) { // console.log("Gone too far EAST");
-        boolTemp = true;
-      } //if
+      if ((intGridColumnCurrent + 1) >= arrGird[intGridRowCurrent].length) boolTemp = true; //too far EAST
     break;
     case "S":
-      if ((intGridRowCurrent + 1) > (arrGird.length-1)) { // console.log("Gone too far SOUTH");
-        boolTemp = true;
-      } //if
+      if ((intGridRowCurrent + 1) > (arrGird.length-1)) boolTemp = true; //too far SOUTH
     break;
     case "W":
-      if ((intGridColumnCurrent - 1) < 0) { // console.log("Gone too far WEST");
-        boolTemp = true;
-      } //if
+      if ((intGridColumnCurrent - 1) < 0) boolTemp = true; //too far WEST
     break;
     default:
-      console.log("Error - gridCheckIfOffGrid: Why not direction?");
+      console.log("Error - gridCheckIfOffGrid");
   } //switch
   return boolTemp;
 } //function
-
 
 
 //////////////////////////
@@ -82,7 +66,6 @@ function gridGetRoomFromGridPosition(intGridPosition) {
 } //function
 
 function gridGetGridPositionsFromGridPosition(intGridPosition) {
-  //returns the row and column from the current position on the grid
   var intGridRowCurrent = 0;
   var intGridColumnCurrent = 0;
   for (g in arrGird) {
@@ -123,6 +106,6 @@ function gridGetGridPositionFromMove(strDirection, intGridPosition) {
   } //return
 } //function
 
-function gridGetRandomPosition() {
-  return Math.floor(Math.random() * Math.floor(16)); // 0 - 15
+function gridGetGridPositionRandom() {
+  return Math.floor(Math.random() * Math.floor(arrGird.length));
 } //function

@@ -15,47 +15,65 @@
   <script src="_js/jquery.js"></script>
 
   <!-- LOGIC -->
-  <!-- <script src="_js/config.js"></script> -->
   <script src="_js/game.js"></script>
-  <script src="_js/gui.js"></script>
   <script src="_js/grid.js"></script>
+  <script src="_js/gui.js"></script>
   <script src="_js/item.js"></script>
-  <!-- <script src="_js/itemCraft.js"></script> -->
   <script src="_js/map.js"></script>
-  <!-- <script src="_js/opponent.js"></script>
-  <script src="_js/player.js"></script> -->
   <script src="_js/room.js"></script>
 
   <!-- JSON -->
   <script src="_json/config.js"></script>
   <script src="_json/game.js"></script>
   <script src="_json/item.js"></script>
-  <script src="_json/itemCraft.js"></script>
-  <script src="_json/map.js"></script>
-  <script src="_json/opponent.js"></script>
   <script src="_json/player.js"></script>
   <script src="_json/room.js"></script>
 
 </head>
 <body>
 
-<div id="divGrid"></div>
-<br>
-<p>Map move</p>
-<button id="butMapMoveN" onClick="mapMoveStart('N');">N</button>
-<button id="butMapMoveE" onClick="mapMoveStart('E');">E</button>
-<button id="butMapMoveS" onClick="mapMoveStart('S');">S</button>
-<button id="butMapMoveW" onClick="mapMoveStart('W');">W</button>
-<br><br>
-<button id="itemPickUp" onClick="itemPickUp(1);">Pick up item</button>
+  <div id="divGrid"></div>
 
-<br><br>
-<button id="itemPickUp" onClick="gridGetRoomFromGridPosition(JSONplayer[0].gridCurrent);">gridGetRoomFromGridPosition</button>
+  <div id="">
+    <span id="spnText"></span>
+  </div>
 
+  <div class="divTable" width="20%">
+    <div class="divRow">
+      <div class="divCell">
+      </div><!-- divCell -->
+      <div class="divCell">
+        <button id="butMapMoveN" onClick="gameMoveStart('N');">N</button>
+      </div><!-- divCell -->
+      <div class="divCell">
+      </div><!-- divCell -->
+    </div><!-- divRow -->
+    <div class="divRow">
+      <div class="divCell">
+        <button id="butMapMoveW" onClick="gameMoveStart('W');">W</button>
+      </div><!-- divCell -->
+      <div class="divCell">
+      </div><!-- divCell -->
+      <div class="divCell">
+        <button id="butMapMoveE" onClick="gameMoveStart('E');">E</button>
+      </div><!-- divCell -->
+    </div><!-- divRow -->
+    <div class="divRow">
+      <div class="divCell">
+      </div><!-- divCell -->
+      <div class="divCell">
+        <button id="butMapMoveS" onClick="gameMoveStart('S');">S</button>
+      </div><!-- divCell -->
+      <div class="divCell">
+      </div><!-- divCell -->
+    </div><!-- divRow -->
+  </div><!-- divTable -->
 
-
-<br><br>
-<button onClick="defJSONshow('arrGird');">Show Grid</button>
+  <br><br>
+  <button id="itemPickUp" onClick="itemPickUp(1);">Pick up item 2</button>
+  <button id="itemPickUp" onClick="itemDrop(1, JSONplayer[0].gridCurrent);">Drop item 2</button>
+  <br><br>
+  <button onClick="defJSONshow('arrGird');">Console Grid</button>
 
   <script>
     $(document).ready(function() {

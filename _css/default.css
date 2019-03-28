@@ -25,14 +25,13 @@ button {
 /* START TABLES */
 .divTable {
   border: 1px #CCC solid;
-  width: 100%;
   display: table;
 }
 .divRow {
   display: table-row;
 }
 .divCell {
-  /* border: 1px #CCC solid; */
+  border: 1px #CCC solid;
   display: table-cell;
   vertical-align: top;
   padding: 2px;

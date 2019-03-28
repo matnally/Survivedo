@@ -1,28 +1,27 @@
 
 function gameInit() {
-
-  arrGird = gridCreate(6, 4); //rows, columns
+  arrGird = gridCreate(JSONconfig[0].gridCreateRow, JSONconfig[0].gridCreateColumn);
   mapCreate();
-
-  mapMoveEnd();
-
+  gameMoveEnd();
 } //function
 
 function gameStart() {
-
 } //function
-
 function gameEnd() {
-
 } //function
 
-
-// *********** START TURN LOGIC ***********
-function gameTurnStart() {
-
+function gameMoveStart(strDirection) {
+  mapMove(strDirection, JSONplayer[0].gridCurrent);
+  gameMoveEnd();
+} //function
+function gameMoveEnd() {
+  guiButtonDirectionUpdate(JSONplayer[0].gridCurrent);
+  guiTextUpdate();
+  defUpdateElement("divGrid", guiMapShow(JSONplayer[0].gridCurrent));
 } //function
 
-function gameTurnEnd() {
-
+function gameActionStart() {
 } //function
-// *********** END TURN LOGIC ***********
+function gameActionEnd() {
+  defUpdateElement("divGrid", guiMapShow(JSONplayer[0].gridCurrent));
+} //function
