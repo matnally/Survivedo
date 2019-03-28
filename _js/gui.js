@@ -23,14 +23,14 @@ function guiButtonDirectionUpdate(intGridPosition) {
 function guiTextUpdate() {
   var strTemp = "";
   //ROOM
-  strTemp += JSONconfig[0].txtMove + "&nbsp;" + JSONroom[gridGetRoomFromGridPosition(JSONplayer[0].gridCurrent)].name;
+  strTemp += JSONconfig[0].txtMove + "&nbsp;" + JSONroom[gridGetRoomFromGridPosition(JSONplayer[0].gridPositionCurrent)].name;
   //ITEMS
-  if (JSONroom[gridGetRoomFromGridPosition(JSONplayer[0].gridCurrent)].item > 0) { //if have items
+  if (JSONroom[gridGetRoomFromGridPosition(JSONplayer[0].gridPositionCurrent)].item > 0) { //if have items
     strTemp += "<br>"
     strTemp += JSONconfig[0].txtRoomItemVisible
-    for (i in JSONroom[gridGetRoomFromGridPosition(JSONplayer[0].gridCurrent)].item) {
+    for (i in JSONroom[gridGetRoomFromGridPosition(JSONplayer[0].gridPositionCurrent)].item) {
       strTemp += "<br>"
-      strTemp += JSONconfig[0].txtRoomItemPrefix + JSONitem[JSONroom[gridGetRoomFromGridPosition(JSONplayer[0].gridCurrent)].item[i]].name;
+      strTemp += JSONconfig[0].txtRoomItemPrefix + JSONitem[JSONroom[gridGetRoomFromGridPosition(JSONplayer[0].gridPositionCurrent)].item[i]].name;
     } //for
   } //if
   defUpdateElement("spnText", strTemp);

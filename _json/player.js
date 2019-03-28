@@ -1,4 +1,5 @@
 
 var JSONplayer = [{
-  "gridCurrent"  : 0
+  "experience"            : 0
+  ,"gridPositionCurrent"  : 0
 }];
