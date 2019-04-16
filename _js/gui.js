@@ -69,6 +69,11 @@ function guiMapShow(intRoom) {
 
       if (arrGird[g][gs][1] != null) {
 
+
+        if (arrGird[g][gs][0] == JSONhunter[0].gridPositionCurrent)
+            intTemp += "<strong>Hunter</strong>";
+
+
         if (arrGird[g][gs][0] == intRoom) {
           intTemp += "<strong>" + JSONroom[arrGird[g][gs][1]].name + "</strong>";
           for (i in JSONroom[arrGird[g][gs][1]].item) {

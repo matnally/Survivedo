@@ -11,7 +11,11 @@ function gameEnd() {
 } //function
 
 function gameMoveStart(strDirection) {
-  mapMove(strDirection, JSONplayer[0].gridPositionCurrent);
+
+  //moves
+  JSONplayer[0].gridPositionCurrent = mapMove(strDirection, JSONplayer[0].gridPositionCurrent);
+  hunterMove();
+
   gameMoveEnd();
 } //function
 function gameMoveEnd() {
@@ -22,6 +26,10 @@ function gameMoveEnd() {
   defUpdateElement("divItemsPlayer", guiItemsGetPlayer());
   defUpdateElement("divItemsRoom", guiItemsGetRoom(gridGetRoomFromGridPosition(JSONplayer[0].gridPositionCurrent)));
   defUpdateElement("divGrid", guiMapShow(JSONplayer[0].gridPositionCurrent));
+
+  if (JSONplayer[0].gridPositionCurrent == JSONhunter[0].gridPositionCurrent)
+    alert("SAME ROOM");
+
 } //function
 
 function gameActionStart() {

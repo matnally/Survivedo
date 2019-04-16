@@ -26,7 +26,10 @@ function mapCreate() {
     if (gridCheckIfOffGrid(strDirection, intGridPosition) != true)
       intGridPosition = gridMove(strDirection, intGridPosition); //update current room from grid move
   } while (arrTemp.length > 0);
+
   JSONplayer[0].gridPositionCurrent = JSONgame[0].roomStart; //finished creating map so make start room current room
+  JSONhunter[0].gridPositionCurrent = roomGetRandomRoom(); //finished creating map so get random starting room
+
 } //function
 
 function mapMove(strDirection, intGridPositions) {
@@ -36,6 +39,7 @@ function mapMove(strDirection, intGridPositions) {
   var intGridPositionsNew = [];
   var intGridPositionsNewRow = 0;
   var intGridPositionsNewColumn = 0;
+  var intGridPositionNew = 0;
   if (gridCheckIfOffGrid(strDirection, intGridPositions) != true) {
     intGridPositionsCurrent = gridGetGridPositionsFromGridPosition(mapMovePotential(strDirection, intGridPositions));
       intGridRowCurrent = intGridPositionsCurrent.intGridRowCurrent;
@@ -44,9 +48,10 @@ function mapMove(strDirection, intGridPositions) {
       intGridPositionsNew = gridGetGridPositionFromMove(strDirection, intGridPositions);
         intGridPositionsNewRow = intGridPositionsNew.intGridPositionsNewRow;
         intGridPositionsNewColumn = intGridPositionsNew.intGridPositionsNewColumn;
-      JSONplayer[0].gridPositionCurrent = arrGird[intGridPositionsNewRow][intGridPositionsNewColumn][0];
+      intGridPositionNew = arrGird[intGridPositionsNewRow][intGridPositionsNewColumn][0];
     } //if
   } //if
+  return intGridPositionNew;
 } //function
 
 function mapMovePotential(strDirection, intGridPositions) {
