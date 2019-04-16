@@ -5,11 +5,7 @@ Arrive in the hall, killer is in random room. Survive until morning, escape or k
 Like Cluedo? Multiple guests?
 
 If killer near hear stuff
-pick up items in a room to use
-drop items
-Pick up map / building plans to reveal rooms (kitchen, WC, etc...)
-but create map as you go (highlight items, and dropped)
-Kitchen has knifes
+Pick up map / building plans to reveal rooms (kitchen, WC, etc...) but create map as you go (highlight items, and dropped)
 Items used to craft
 Carry limit
 More you carry more noise you make / killer hears you move

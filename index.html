@@ -34,10 +34,6 @@
 
   <div id="divGrid"></div>
 
-  <div id="">
-    <span id="spnText"></span>
-  </div>
-
   <div class="divTable" width="20%">
     <div class="divRow">
       <div class="divCell">
@@ -70,10 +66,21 @@
   </div><!-- divTable -->
 
   <br><br>
-  <button id="itemPickUp" onClick="itemPickUp(1);">Pick up item 2</button>
-  <button id="itemPickUp" onClick="itemDrop(1, JSONplayer[0].gridPositionCurrent);">Drop item 2</button>
+  <h2>Rooom</h2>
+  <div id="">
+    <span id="spnText"></span>
+  </div>
+  <div id="divItemsRoom"></div>
+
   <br><br>
+  <h2>Player</h2>
+  <div id="divItemsPlayer"></div>
+
+  <br><br>
+  <h2>Admin</h2>
   <button onClick="defJSONshow('arrGird');">Console Grid</button>
+  <br>
+  <button onClick="defJSONshow('JSONroom');">Console JSONroom</button>
 
   <script>
     $(document).ready(function() {

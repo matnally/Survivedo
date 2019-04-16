@@ -38,6 +38,27 @@ function guiTextUpdate() {
 
 
 
+function guiItemsGetRoom(intRoom) {
+  var strTemp = "";
+  for (i in JSONroom[intRoom].item) {
+    strTemp += '<button onClick="itemPickUp('+JSONroom[intRoom].item[i]+');">Pick up '+JSONitem[JSONroom[intRoom].item[i]].name+'</button>';
+  } //for
+  return strTemp;
+} //function
+function guiItemsGetPlayer() {
+  var strTemp = "";
+  for (i in JSONplayer[0].item) {
+    strTemp += '<button onClick="itemDrop('+JSONplayer[0].item[i]+', '+gridGetRoomFromGridPosition(JSONplayer[0].gridPositionCurrent)+');">Drop '+JSONitem[JSONplayer[0].item[i]].name+'</button>';
+  } //for
+  return strTemp;
+} //function
+
+
+
+
+
+
+
 function guiMapShow(intRoom) {
   var intTemp = "";
   intTemp += '<div class="divTable">';
