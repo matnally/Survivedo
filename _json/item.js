@@ -1,27 +1,27 @@
 
 var JSONitem = [
   { //0
-    "name"          : "Knife"
+    "name"          : "Full vodka bottle"
   	,"description"  : "item1desc"
     ,"image"        : ""
   },{ //1
-    "name"          : "Lead pipe"
-  	,"description"  : "item2desc"
-    ,"image"        : ""
-  },{ //2
-    "name"          : "Revolver"
+    "name"          : "Rag"
     ,"description"  : "item3desc"
     ,"image"        : ""
+  },{ //2
+    "name"          : "Full whiskey bottle"
+  	,"description"  : "item2desc"
+    ,"image"        : ""
   },{ //3
-    "name"          : "Rope"
+    "name"          : "Tea Towel"
     ,"description"  : "item4desc"
     ,"image"        : ""
   },{ //4
-    "name"          : "Spanner"
+    "name"          : "Pole"
     ,"description"  : "item5desc"
     ,"image"        : ""
   },{ //5
-    "name"          : "Poison"
+    "name"          : "Knife"
     ,"description"  : "item6desc"
     ,"image"        : ""
   },{ //6

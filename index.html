@@ -28,6 +28,7 @@
   <script src="_json/game.js"></script>
   <script src="_json/hunter.js"></script>
   <script src="_json/item.js"></script>
+  <script src="_json/itemCraft.js"></script>
   <script src="_json/player.js"></script>
   <script src="_json/room.js"></script>
 
@@ -77,11 +78,18 @@
   <br><br>
   <h2>Player</h2>
   <div id="divItemsPlayer"></div>
+  <br><br>
+  <div id="divItemsCraft"></div>
 
+  
   <br><br>
   <h2>Admin</h2>
-  <button onClick="defJSONshow('arrGird');">Console Grid</button>
-  <br>
+
+  <br><br>
+  <button onClick="itemCraft(0, 2, 3);">itemCraft</button>
+  <button onclick="itemCraft(0,0,1);">Craft Molotov Cocktail (Full vodka bottle, Rag)</button>
+
+  <br><br>
   <button onClick="defJSONshow('JSONroom');">Console JSONroom</button>
 
   <script>

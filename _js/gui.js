@@ -25,7 +25,7 @@ function guiTextUpdate() {
   //ROOM
   strTemp += JSONconfig[0].txtMove + "&nbsp;" + JSONroom[gridGetRoomFromGridPosition(JSONplayer[0].gridPositionCurrent)].name;
   //ITEMS
-  if (JSONroom[gridGetRoomFromGridPosition(JSONplayer[0].gridPositionCurrent)].item > 0) { //if have items
+  if (JSONroom[gridGetRoomFromGridPosition(JSONplayer[0].gridPositionCurrent)].item.length > 0) { //if have items
     strTemp += "<br>"
     strTemp += JSONconfig[0].txtRoomItemVisible
     for (i in JSONroom[gridGetRoomFromGridPosition(JSONplayer[0].gridPositionCurrent)].item) {

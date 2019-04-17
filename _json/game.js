@@ -1,5 +1,5 @@
 
 var JSONgame = [{
   "roomStart"   : 0
-  ,"carryLimit" : 3
+  ,"carryLimit" : 30
 }];

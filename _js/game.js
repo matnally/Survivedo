@@ -40,4 +40,14 @@ function gameActionEnd() {
   defUpdateElement("divItemsPlayer", guiItemsGetPlayer());
   defUpdateElement("divItemsRoom", guiItemsGetRoom(gridGetRoomFromGridPosition(JSONplayer[0].gridPositionCurrent)));
   defUpdateElement("divGrid", guiMapShow(JSONplayer[0].gridPositionCurrent));
+
+
+  //itemCraft
+  var strTemp = "";
+  var arrTemp = itemCraftCheck();
+  for (i in arrTemp) {
+    strTemp += '<button onClick="itemCraft('+arrTemp[i][0]+','+arrTemp[i][1]+','+arrTemp[i][2]+');">Craft ' + JSONitemCraft[arrTemp[i][0]].name + ' (' + JSONitem[arrTemp[i][1]].name + ', ' + JSONitem[arrTemp[i][2]].name + ')</button><br>';
+  } //for
+  defUpdateElement("divItemsCraft", strTemp);
+
 } //function
