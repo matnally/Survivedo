@@ -14,11 +14,14 @@ function gameMoveStart(strDirection) {
 
   //moves
   JSONplayer[0].gridPositionCurrent = mapMove(strDirection, JSONplayer[0].gridPositionCurrent);
-  hunterMove();
 
   gameMoveEnd();
 } //function
 function gameMoveEnd() {
+
+  hunterMove();
+  hunterCheckIfNear()
+
   guiButtonDirectionUpdate(JSONplayer[0].gridPositionCurrent);
   JSONroom[gridGetRoomFromGridPosition(JSONplayer[0].gridPositionCurrent)].visitied = true;
   //visuals

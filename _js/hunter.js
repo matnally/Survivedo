@@ -21,3 +21,23 @@ function hunterMove() {
   } //if
 
 } //function
+
+
+function hunterCheckIfNear() {
+
+  var intGridPositionsCurrent = [];
+  var intGridRowCurrent = 0;
+  var intGridColumnCurrent = 0;
+
+  for (d in arrDirection) {
+
+    intGridPositionsCurrent = gridGetGridPositionsFromGridPosition(mapMovePotential(arrDirection[d], JSONplayer[0].gridPositionCurrent));
+      intGridRowCurrent = intGridPositionsCurrent.intGridRowCurrent;
+      intGridColumnCurrent = intGridPositionsCurrent.intGridColumnCurrent;
+
+    if (JSONhunter[0].gridPositionCurrent == mapMove(arrDirection[d], arrGird[intGridRowCurrent][intGridColumnCurrent][0]))
+      console.log("Hunter near!");
+
+  } //for
+
+} //function
