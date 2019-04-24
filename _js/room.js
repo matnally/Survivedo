@@ -1,5 +1,5 @@
 
-function roomGetRandomRoom() {
+function roomGetRandom() {
   var g = 0;
   var gs = 0;
   do {

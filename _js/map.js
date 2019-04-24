@@ -26,10 +26,11 @@ function mapCreate() {
     if (gridCheckIfOffGrid(strDirection, intGridPosition) != true)
       intGridPosition = gridMove(strDirection, intGridPosition); //update current room from grid move
   } while (arrTemp.length > 0);
-
   JSONplayer[0].gridPositionCurrent = JSONgame[0].roomStart; //finished creating map so make start room current room
-  JSONhunter[0].gridPositionCurrent = roomGetRandomRoom(); //finished creating map so get random starting room
-
+  do { //allocate rooms
+    intRandomRoom = roomGetRandom();
+  } while (intRandomRoom == JSONplayer[0].gridPositionCurrent); //check so not same room as player
+  JSONhunter[0].gridPositionCurrent = intRandomRoom; //finished creating map so get random starting room
 } //function
 
 function mapMove(strDirection, intGridPositions) {

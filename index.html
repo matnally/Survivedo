@@ -13,6 +13,7 @@
 
   <!-- JQUERY -->
   <script src="_js/jquery.js"></script>
+  <script src="_js/jquery-ui.min.js"></script>
 
   <!-- LOGIC -->
   <script src="_js/game.js"></script>
@@ -28,70 +29,92 @@
   <script src="_json/game.js"></script>
   <script src="_json/hunter.js"></script>
   <script src="_json/item.js"></script>
-  <script src="_json/itemCraft.js"></script>
   <script src="_json/player.js"></script>
   <script src="_json/room.js"></script>
 
 </head>
 <body>
 
-  <div id="divGrid"></div>
+  <div class="divTable" width="100%">
+    <div class="divRow">
+      <div class="divCell">
 
-  <div class="divTable" width="20%">
-    <div class="divRow">
-      <div class="divCell">
+        <span id="spnTextRoomDesc"></span>
+        <br>
+        <span id="spnTextRoomDescItem"></span>
+        <br>
+        <div id="divRoomGetItemButton"></div>
+
       </div><!-- divCell -->
       <div class="divCell">
-        <button id="butMapMoveN" onClick="gameMoveStart('N');">N</button>
+
+        <!-- DIRECTIONS -->
+        <div class="divTable" width="20%">
+          <div class="divRow">
+            <div class="divCell">
+            </div><!-- divCell -->
+            <div class="divCell">
+              <button id="butMapMoveN" onClick="gameMoveStart('N');">N</button>
+            </div><!-- divCell -->
+            <div class="divCell">
+            </div><!-- divCell -->
+          </div><!-- divRow -->
+          <div class="divRow">
+            <div class="divCell">
+              <button id="butMapMoveW" onClick="gameMoveStart('W');">W</button>
+            </div><!-- divCell -->
+            <div class="divCell">
+              <button id="butMapMoveW" onClick="gameMoveStart('');">*</button>
+            </div><!-- divCell -->
+            <div class="divCell">
+              <button id="butMapMoveE" onClick="gameMoveStart('E');">E</button>
+            </div><!-- divCell -->
+          </div><!-- divRow -->
+          <div class="divRow">
+            <div class="divCell">
+            </div><!-- divCell -->
+            <div class="divCell">
+              <button id="butMapMoveS" onClick="gameMoveStart('S');">S</button>
+            </div><!-- divCell -->
+            <div class="divCell">
+            </div><!-- divCell -->
+          </div><!-- divRow -->
+        </div><!-- divTable -->
+
+        <br>
+        <div class="divTable">
+          <div class="divRow">
+            <div id="dropPickUp" class="divCell droppable">Pick up</div>
+            &nbsp;
+            <div id="dropDrop" class="divCell droppable">Drop</div>
+            &nbsp;
+            <div id="dropUse" class="divCell droppable">Use</div>
+          </div><!-- divRow -->
+        </div><!-- divTable -->
+
+
+        <br>
+        <div id="divPlayerGetItemButton"></div>
+        <br>
+        <div id="divPlayerGetItemCraftPotentialButton"></div>
+
+
       </div><!-- divCell -->
-      <div class="divCell">
-      </div><!-- divCell -->
+
     </div><!-- divRow -->
-    <div class="divRow">
-      <div class="divCell">
-        <button id="butMapMoveW" onClick="gameMoveStart('W');">W</button>
-      </div><!-- divCell -->
-      <div class="divCell">
-        <button id="butMapMoveW" onClick="gameMoveEnd();">Stay</button>
-      </div><!-- divCell -->
-      <div class="divCell">
-        <button id="butMapMoveE" onClick="gameMoveStart('E');">E</button>
-      </div><!-- divCell -->
-    </div><!-- divRow -->
-    <div class="divRow">
-      <div class="divCell">
-      </div><!-- divCell -->
-      <div class="divCell">
-        <button id="butMapMoveS" onClick="gameMoveStart('S');">S</button>
-      </div><!-- divCell -->
-      <div class="divCell">
-      </div><!-- divCell -->
-    </div><!-- divRow -->
+
   </div><!-- divTable -->
 
-  <br><br>
-  <h2>Rooom</h2>
-  <div id="">
-    <span id="spnText"></span>
-  </div>
-  <div id="divItemsRoom"></div>
 
-  <br><br>
-  <h2>Player</h2>
-  <div id="divItemsPlayer"></div>
-  <br><br>
-  <div id="divItemsCraft"></div>
+  <br>
+  <div id="divGrid"></div>
 
 
   <br><br>
   <h2>Admin</h2>
+  <button onClick="defJSONshow('JSONplayer');">JSONplayer</button>
+  <button onClick="defJSONshow('JSONroom');">JSONroom</button>
 
-  <br><br>
-  <button onClick="itemCraft(0, 2, 3);">itemCraft</button>
-  <button onclick="itemCraft(0,0,1);">Craft Molotov Cocktail (Full vodka bottle, Rag)</button>
-
-  <br><br>
-  <button onClick="defJSONshow('JSONroom');">Console JSONroom</button>
 
   <script>
     $(document).ready(function() {

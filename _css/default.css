@@ -31,9 +31,42 @@ button {
   display: table-row;
 }
 .divCell {
-  border: 1px #CCC solid;
+  /* border: 1px #CCC solid; */
   display: table-cell;
   vertical-align: top;
-  padding: 2px;
+  /* padding: 2px; */
 }
 /* END TABLES */
+
+/* START JQUERY UI */
+.ui-tooltip {
+  position: absolute;
+  background: #000;
+  color: #FFF;
+  padding: 5px;
+}
+
+.draggable {
+  width: 32px;
+  height: 32px;
+  /* background: #ccc; */
+  /* left: 250px;
+  top: 0; */
+  /* position:inherit; */
+}
+
+.droppable {
+  /* position: absolute; */
+  /* left: 250px;
+  top: 0; */
+  width: 64px;
+  height: 64px;
+  background: #999;
+  color: #fff;
+  vertical-align:middle;
+  text-align: center;
+}
+.droppable-highlight {
+  color: #000;
+}
+/* END JQUERY UI */

@@ -16,31 +16,54 @@ function itemPickUp(intItem) {
 } //function
 
 function itemDrop(intItem, intRoom) {
-  for (i in JSONplayer[0].item) {
-    if (JSONplayer[0].item[i] == intItem)
-      JSONplayer[0].item.splice(i, 1); //remove item from player
-  } //if
+  itemRemoveFromPlayer(intItem);
   JSONroom[intRoom].item.push(intItem); //add item to room
   gameActionEnd();
 } //function
 
+function itemRemoveFromPlayer(intItem) {
+  for (i in JSONplayer[0].item) {
+    if (JSONplayer[0].item[i] == intItem)
+      JSONplayer[0].item.splice(i, 1); //remove item from player
+  } //if
+} //function
 
+function itemCraftIt(intItem, intItem1, intItem2) { //calling function itemCraft returns error!
+  //two loops as splice changes array
+  itemRemoveFromPlayer(intItem1);
+  itemRemoveFromPlayer(intItem2);
+  JSONplayer[0].item.push(intItem); //add item to room
+  gameActionEnd();
+} //function
+
+function itemUse(intItem) {
+
+  console.log("Use " + JSONitem[intItem].name);
+  itemRemoveFromPlayer(intItem);
+  gameActionEnd();
+
+} //function
+
+
+//////////////////////////
+//// SUPPORTING LOGIC ////
+//////////////////////////
 
 function itemCraftCheck() {
   var arrTemp = []; //to return
   var arrItem1 = [];
   var arrItem2 = [];
-  for (itemCraft in JSONitemCraft) {
+  for (itemCraft in JSONitem) {
     for (i in JSONplayer[0].item) {
-      for (iOne in JSONitemCraft[itemCraft].item1) {
-        if (JSONitemCraft[itemCraft].item1[iOne] == JSONplayer[0].item[i]) {
+      for (iOne in JSONitem[itemCraft].item1) {
+        if (JSONitem[itemCraft].item1[iOne] == JSONplayer[0].item[i]) {
           arrItem1.push([itemCraft, JSONplayer[0].item[i]]);
         } //if
       } //for
     } //for
     for (i in JSONplayer[0].item) {
-      for (iTwo in JSONitemCraft[itemCraft].item2) {
-        if (JSONitemCraft[itemCraft].item2[iTwo] == JSONplayer[0].item[i]) {
+      for (iTwo in JSONitem[itemCraft].item2) {
+        if (JSONitem[itemCraft].item2[iTwo] == JSONplayer[0].item[i]) {
           arrItem2.push([itemCraft, JSONplayer[0].item[i]]);
         } //if
       } //for
@@ -55,6 +78,11 @@ function itemCraftCheck() {
   return arrTemp;
 } //function
 
-function itemCraft(intItemCraft, intItem1, intItem2) {
-  console.log("Craft " + JSONitemCraft[intItemCraft].name + " using " + JSONitem[intItem1].name + " and " + JSONitem[intItem2].name);
+function itemExistsInPlayer(intItem) {
+  var boolTemp = false;
+  for (i in JSONplayer[0].item) {
+    if (JSONplayer[0].item[i] == intItem)
+      boolTemp = true;
+  } //for
+  return boolTemp;
 } //function
