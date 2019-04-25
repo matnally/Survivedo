@@ -81,7 +81,14 @@ function guiGetItemCraftPotential() {
   var strTemp = "";
   var arrTemp = itemCraftCheck();
   for (i in arrTemp) {
-    strTemp += '<button onClick="itemCraftIt('+arrTemp[i][0]+','+arrTemp[i][1]+','+arrTemp[i][2]+');"><img src="'+JSONitem[arrTemp[i][0]].image+'" alt="'+JSONitem[arrTemp[i][0]].name+'"><br>Craft</button>';
+    strTemp += '<button onClick="itemCraftIt('+arrTemp[i][0]+','+arrTemp[i][1]+','+arrTemp[i][2]+');"><img src="'+JSONitem[arrTemp[i][1]].image+'" alt="'+JSONitem[arrTemp[i][1]].name+'"> + <img src="'+JSONitem[arrTemp[i][2]].image+'" alt="'+JSONitem[arrTemp[i][2]].name+'"> = '
+
+    for (var a=0;a<JSONitem[arrTemp[i][0]].quantity;a++) {
+      strTemp += '<img src="'+JSONitem[arrTemp[i][0]].image+'" alt="'+JSONitem[arrTemp[i][0]].name+'">';
+    } //for
+
+    strTemp += '<br>Craft '+JSONitem[arrTemp[i][0]].name+'</button><br>';
+
   } //for
   return strTemp;
 } //function

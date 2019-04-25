@@ -3,7 +3,8 @@ var JSONroom = [
   {
     "name"          : "Entrance hall"
   	,"description"  : "room1desc"
-    ,"item"         : [0,1,2,3,8]
+    ,"item"         : [0,1]
+    // ,"item"         : [0,1,2,3,4,5,8]
     ,"image"        : ""
     ,"visitied"     : false
   },{

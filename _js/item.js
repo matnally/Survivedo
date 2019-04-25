@@ -28,11 +28,19 @@ function itemRemoveFromPlayer(intItem) {
   } //if
 } //function
 
-function itemCraftIt(intItem, intItem1, intItem2) { //calling function itemCraft returns error!
+function itemCraftIt(intItem, intitemIngredient1, intitemIngredient2) { //calling function itemCraft returns error!
   //two loops as splice changes array
-  itemRemoveFromPlayer(intItem1);
-  itemRemoveFromPlayer(intItem2);
-  JSONplayer[0].item.push(intItem); //add item to room
+  itemRemoveFromPlayer(intitemIngredient1);
+  itemRemoveFromPlayer(intitemIngredient2);
+
+
+  console.log("JSONitem[intItem].quantity: " + JSONitem[intItem].quantity);
+  for (var a=0;a<JSONitem[intItem].quantity;a++) {
+    console.log(JSONitem[intItem].name + " added");
+    JSONplayer[0].item.push(intItem); //add item to player
+  } //for
+
+
   gameActionEnd();
 } //function
 
@@ -51,28 +59,29 @@ function itemUse(intItem) {
 
 function itemCraftCheck() {
   var arrTemp = []; //to return
-  var arrItem1 = [];
-  var arrItem2 = [];
+  var arritemIngredient1 = [];
+  var arritemIngredient2 = [];
   for (itemCraft in JSONitem) {
     for (i in JSONplayer[0].item) {
-      for (iOne in JSONitem[itemCraft].item1) {
-        if (JSONitem[itemCraft].item1[iOne] == JSONplayer[0].item[i]) {
-          arrItem1.push([itemCraft, JSONplayer[0].item[i]]);
+      for (iOne in JSONitem[itemCraft].itemIngredient1) {
+        if (JSONitem[itemCraft].itemIngredient1[iOne] == JSONplayer[0].item[i]) {
+          arritemIngredient1.push([itemCraft, JSONplayer[0].item[i]]);
         } //if
       } //for
     } //for
     for (i in JSONplayer[0].item) {
-      for (iTwo in JSONitem[itemCraft].item2) {
-        if (JSONitem[itemCraft].item2[iTwo] == JSONplayer[0].item[i]) {
-          arrItem2.push([itemCraft, JSONplayer[0].item[i]]);
+      for (iTwo in JSONitem[itemCraft].itemIngredient2) {
+        if (JSONitem[itemCraft].itemIngredient2[iTwo] == JSONplayer[0].item[i]) {
+          arritemIngredient2.push([itemCraft, JSONplayer[0].item[i]]);
         } //if
       } //for
     } //for
   } //for
-  for (i in arrItem1) {
-    for (ii in arrItem2) {
-      if (arrItem1[i][0] == arrItem2[ii][0])
-        arrTemp.push([arrItem1[i][0], arrItem1[i][1], arrItem2[ii][1]]);
+  for (i in arritemIngredient1) {
+    for (ii in arritemIngredient2) {
+      if (arritemIngredient1[i][0] == arritemIngredient2[ii][0]) {
+        arrTemp.push([arritemIngredient1[i][0], arritemIngredient1[i][1], arritemIngredient2[ii][1]]);
+      } //if
     } //for
   } //for
   return arrTemp;
