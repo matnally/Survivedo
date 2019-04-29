@@ -8,6 +8,7 @@ function itemPickUp(intItem) {
         if (JSONitem[JSONroom[r].item[i]].name == JSONitem[intItem].name) {
           JSONplayer[0].item.push(JSONroom[r].item[i]); //add item to player
           JSONroom[r].item.splice(i, 1); //remove item from room
+          break; //for quantities
         } //if
       } //for
     } //for
@@ -23,32 +24,52 @@ function itemDrop(intItem, intRoom) {
 
 function itemRemoveFromPlayer(intItem) {
   for (i in JSONplayer[0].item) {
-    if (JSONplayer[0].item[i] == intItem)
+    if (JSONplayer[0].item[i] == intItem) {
       JSONplayer[0].item.splice(i, 1); //remove item from player
-  } //if
+      break; //for quantities
+    } //if
+  } //for
 } //function
 
 function itemCraftIt(intItem, intitemIngredient1, intitemIngredient2) { //calling function itemCraft returns error!
-  //two loops as splice changes array
-  itemRemoveFromPlayer(intitemIngredient1);
-  itemRemoveFromPlayer(intitemIngredient2);
-
-
-  console.log("JSONitem[intItem].quantity: " + JSONitem[intItem].quantity);
+  itemRemoveFromPlayer(intitemIngredient1); //two loops as splice changes array
+  itemRemoveFromPlayer(intitemIngredient2); //two loops as splice changes array
   for (var a=0;a<JSONitem[intItem].quantity;a++) {
-    console.log(JSONitem[intItem].name + " added");
     JSONplayer[0].item.push(intItem); //add item to player
   } //for
-
-
   gameActionEnd();
 } //function
 
 function itemUse(intItem) {
 
-  console.log("Use " + JSONitem[intItem].name);
-  itemRemoveFromPlayer(intItem);
-  gameActionEnd();
+  var boolTemp = false;
+  switch(true) {
+    case (itemExistsInPlayer(JSONitem[intItem].itemUse) == true):
+      console.log("itemExistsInPlayer");
+      boolTemp = true;
+    break;
+    case (JSONitem[intItem].itemUse == true):
+      console.log("JSONitem[intItem].itemUse");
+      boolTemp = true;
+    break;
+    case (!JSONitem[intItem].itemUse):
+      console.log("!JSONitem[intItem].itemUse");
+      boolTemp = true;
+    break;
+    default:
+      console.log("itemUse-switch-default");
+  } //switch
+
+  // if (boolTemp == true)
+
+
+  // if ((itemExistsInPlayer(JSONitem[intItem].itemUse)) || (!JSONitem[intItem].itemUse)) {
+  //   console.log("Use " + JSONitem[intItem].name);
+  //   itemRemoveFromPlayer(intItem);
+  //   gameActionEnd();
+  // } else {
+  //   console.log("You can't use " + JSONitem[intItem].name + " because you don't have " + JSONitem[JSONitem[intItem].itemUse].name);
+  // } //if
 
 } //function
 
