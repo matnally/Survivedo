@@ -37,6 +37,7 @@ function itemCraftIt(intItem, intitemIngredient1, intitemIngredient2) { //callin
   for (var a=0;a<JSONitem[intItem].quantity;a++) {
     JSONplayer[0].item.push(intItem); //add item to player
   } //for
+  console.log("Crafted " + JSONitem[intItem].name + " using " + JSONitem[intitemIngredient1].name + " and " + JSONitem[intitemIngredient2].name);
   gameActionEnd();
 } //function
 

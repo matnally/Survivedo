@@ -1,7 +1,9 @@
 
 function gameInit() {
-  defDragDrop();
-  arrGird = gridCreate(JSONconfig[0].gridCreateRow, JSONconfig[0].gridCreateColumn); //global variable
+  //functionality
+  guiCreateDragDrop();
+  guiCreateListeners();
+  //gui
   mapCreate();
   gameMoveEnd();
 } //function
@@ -13,13 +15,15 @@ function gameEnd() {
 } //function
 
 function gameMoveStart(strDirection) {
-  if (strDirection != "") JSONplayer[0].gridPositionCurrent = mapMove(strDirection, JSONplayer[0].gridPositionCurrent); //player move
+  if (strDirection != "") { //player move
+    JSONplayer[0].gridPositionCurrent = mapMove(strDirection, JSONplayer[0].gridPositionCurrent);
+    JSONroom[gridGetRoomFromGridPosition(JSONplayer[0].gridPositionCurrent)].visitied = true;
+  } //if
   hunterMove(); //hunter move
   gameMoveEnd();
 } //function
 
 function gameMoveEnd() {
-  JSONroom[gridGetRoomFromGridPosition(JSONplayer[0].gridPositionCurrent)].visitied = true;
   guiVisualsUpdate();
   hunterCheckIfNear()
 } //function

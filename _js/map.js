@@ -1,5 +1,6 @@
 
 function mapCreate() {
+  arrGird = gridCreate(JSONconfig[0].gridCreateRow, JSONconfig[0].gridCreateColumn); //global variable
   var strDirection = "";
   var intGridPositionsCurrent = [];
   var intGridRowCurrent = 0;

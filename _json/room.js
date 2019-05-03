@@ -2,31 +2,31 @@
 var JSONroom = [
   {
     "name"          : "Entrance hall"
-  	,"description"  : "room1desc"
-    ,"item"         : [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,23,24,25,26,27,28,29,30,32]
+  	,"description"  : "Area just inside the main door"
+    ,"item"         : [0,1,2,3,4,5,6,11,12,13,14,15,16,17,18,19,21,23,24,25,32]
     ,"image"        : ""
     ,"visitied"     : false
   },{
     "name"          : "Kitchen"
-  	,"description"  : "room2desc"
+  	,"description"  : "Used for cooking and food preparation"
     ,"item"         : []
     ,"image"        : ""
     ,"visitied"     : false
   },{
     "name"          : "Study"
-  	,"description"  : "room3desc"
+  	,"description"  : "Used for paperwork, computer work, or reading"
     ,"item"         : []
     ,"image"        : ""
     ,"visitied"     : false
   },{
     "name"          : "Ballroom"
-  	,"description"  : "room4desc"
+  	,"description"  : "Used to hold large formal parties"
     ,"item"         : []
     ,"image"        : ""
     ,"visitied"     : false
   },{
     "name"          : "Conservatory"
-  	,"description"  : "room5desc"
+  	,"description"  : "Glass or tarpaulin roofing and walls used as a greenhouse or a sunroom"
     ,"item"         : []
     ,"image"        : ""
     ,"visitied"     : false

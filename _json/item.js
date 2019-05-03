@@ -44,43 +44,43 @@ var JSONitem = [
   },{ //1
     "name"              : "Full bottle of whiskey"
     ,"description"      : "An unopened bottle of 12 year old whiskey"
-    ,"image"            : "_images/item/bottle-full.png"
+    ,"image"            : "_images/item/bottle-whiskey-full.png"
     ,"itemIngredient1"  : []
     ,"itemIngredient2"  : []
     ,"quantity"         : 1
   },{ //2
     "name"              : "Half bottle of whiskey"
     ,"description"      : "A half bottle of 12 year old whiskey"
-    ,"image"            : "_images/item/bottle-half.png"
-    ,"itemIngredient1"  : [21,22,23,24,25,26,27,28,29,30]
+    ,"image"            : "_images/item/bottle-whiskey-half.png"
+    ,"itemIngredient1"  : [21]
     ,"itemIngredient2"  : [1]
     ,"quantity"         : 2 //only if crafted
   },{ //3
     "name"              : "Full bottle of vodka"
     ,"description"      : "An unopened bottle of Russian vodka"
-    ,"image"            : "_images/item/bottle-full.png"
+    ,"image"            : "_images/item/bottle-vodka-full.png"
     ,"itemIngredient1"  : []
     ,"itemIngredient2"  : []
     ,"quantity"         : 1
   },{ //4
     "name"              : "Half bottle of vodka"
     ,"description"      : "A half bottle of Russian vodka"
-    ,"image"            : "_images/item/bottle-half.png"
-    ,"itemIngredient1"  : [21,22,23,24,25,26,27,28,29,30]
+    ,"image"            : "_images/item/bottle-vodka-half.png"
+    ,"itemIngredient1"  : [21]
     ,"itemIngredient2"  : [3]
     ,"quantity"         : 2 //only if crafted
   },{ //5
     "name"              : "Full bottle of brandy"
     ,"description"      : "An unopened bottle of expensive brandy"
-    ,"image"            : "_images/item/bottle-full.png"
+    ,"image"            : "_images/item/bottle-brandy-full.png"
     ,"itemIngredient1"  : []
     ,"itemIngredient2"  : []
     ,"quantity"         : 1
   },{ //6
     "name"              : "Half bottle of brandy"
     ,"description"      : "A half bottle of expensive brandy"
-    ,"image"            : "_images/item/bottle-half.png"
-    ,"itemIngredient1"  : [21,22,23,24,25,26,27,28,29,30]
+    ,"image"            : "_images/item/bottle-brandy-half.png"
+    ,"itemIngredient1"  : [21]
     ,"itemIngredient2"  : [5]
     ,"quantity"         : 2 //only if crafted
   },{ //7
@@ -114,7 +114,7 @@ var JSONitem = [
   },{ //11
     "name"              : "Bedsheets"
     ,"description"      : "Clean bedsheets"
-    ,"image"            : "_images/image.png"
+    ,"image"            : "_images/item/bedsheets.png"
     ,"itemIngredient1"  : []
     ,"itemIngredient2"  : []
     ,"quantity"         : 1
@@ -135,21 +135,21 @@ var JSONitem = [
   },{ //14
     "name"              : "Socks"
     ,"description"      : "A pair of sports socks"
-    ,"image"            : "_images/image.png"
+    ,"image"            : "_images/item/socks.png"
     ,"itemIngredient1"  : []
     ,"itemIngredient2"  : []
     ,"quantity"         : 1
   },{ //15
     "name"              : "Underwear"
     ,"description"      : "Some soiled underwear"
-    ,"image"            : "_images/image.png"
+    ,"image"            : "_images/item/underwear.png"
     ,"itemIngredient1"  : []
     ,"itemIngredient2"  : []
     ,"quantity"         : 1
   },{ //16
     "name"              : "Towel"
     ,"description"      : "A bathroom towel"
-    ,"image"            : "_images/image.png"
+    ,"image"            : "_images/item/towel.png"
     ,"itemIngredient1"  : []
     ,"itemIngredient2"  : []
     ,"quantity"         : 1
@@ -163,14 +163,14 @@ var JSONitem = [
   },{ //18
     "name"              : "Newspaper"
     ,"description"      : "Yesterday's newspaper"
-    ,"image"            : "_images/image.png"
+    ,"image"            : "_images/item/newspaper.png"
     ,"itemIngredient1"  : []
     ,"itemIngredient2"  : []
     ,"quantity"         : 1
   },{ //19
     "name"              : "Tea towel"
     ,"description"      : "A kitchen tea towel"
-    ,"image"            : "_images/image.png"
+    ,"image"            : "_images/item/teatowel.png"
     ,"itemIngredient1"  : []
     ,"itemIngredient2"  : []
     ,"quantity"         : 1
@@ -191,28 +191,28 @@ var JSONitem = [
   },{ //22
     "name"              : "Vase"
     ,"description"      : "An flowerless vase"
-    ,"image"            : "_images/image.png"
+    ,"image"            : "_images/item/vase.png"
     ,"itemIngredient1"  : []
     ,"itemIngredient2"  : []
     ,"quantity"         : 1
   },{ //23
     "name"              : "Empty Jar"
     ,"description"      : "Someone has eaten all of the jam from this jar"
-    ,"image"            : "_images/image.png"
+    ,"image"            : "_images/item/jar.png"
     ,"itemIngredient1"  : []
     ,"itemIngredient2"  : []
     ,"quantity"         : 1
   },{ //24
     "name"              : "Empty water bottle"
     ,"description"      : "An empty water bottle"
-    ,"image"            : "_images/image.png"
+    ,"image"            : "_images/item/bottle-water.png"
     ,"itemIngredient1"  : []
     ,"itemIngredient2"  : []
     ,"quantity"         : 1
   },{ //25
     "name"              : "Glass cup"
     ,"description"      : "An empty glass cup"
-    ,"image"            : "_images/image.png"
+    ,"image"            : "_images/item/cup-glass.png"
     ,"itemIngredient1"  : []
     ,"itemIngredient2"  : []
     ,"quantity"         : 1
@@ -255,14 +255,14 @@ var JSONitem = [
     "name"              : "Molotov Cocktail"
     ,"description"      : "A throwing weapon"
     ,"image"            : "_images/item/cocktail.png"
-    ,"itemIngredient1"  : [1,2,3,4,5,6,7,8,9,10] //flammable fluids
-    ,"itemIngredient2"  : [0,11,12,13,14,15,16,17,18,19,20] //materials
+    ,"itemIngredient1"  : [1,2,3,4,5,6] //flammable fluids
+    ,"itemIngredient2"  : [0,11,12,13,14,15,16,17,18,19] //materials
     ,"itemUse"          : 32
     ,"quantity"         : 1
   },{ //32
     "name"              : "Lighter"
     ,"description"      : "A zippo"
-    ,"image"            : "_images/image.png"
+    ,"image"            : "_images/item/lighter.png"
     ,"itemIngredient1"  : []
     ,"itemIngredient2"  : []
     ,"itemUse"          : false
