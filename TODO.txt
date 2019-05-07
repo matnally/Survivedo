@@ -14,3 +14,100 @@ MOVE
 INTERACT
 HIDE
 FEAR?
+
+Each item has strength
+Strength determines damage of crafted item
+
+Break down items (chair to wooden bits ???)
+
+
+  Full bottle of ???
+  Half full bottle of ???
+Empty bottle
+Vase
+Glass
+
+
+Table cloth
+Tea towel
+Bed sheet
+Blanket
+Rag
+Rope
+String
+
+
+Stick ???
+Hockey stick
+Pool cue
+Baseball bat / Bat
+
+
+Paint
+Ink
+Pen
+Pencil
+
+
+Knife
+Razor
+
+
+Bleach
+Cleaning fluid
+Chemicals ???
+
+
+bow
+slingshot
+-sitck
+-rope
+
+
+
+enemies in rooms
+  snake - need anti venom to heal
+
+MAP only remembers X rooms?
+
+paint - mark rooms
+repair tool
+energy
+
+bat
+hat?
+blow dart?
+torch
+Cloth
+Stone
+Empty bottle
+Hammer
+Ice
+Machete
+Magnifying Glass
+
+herbal medicine
+Slingshot
+  Rag + stick
+Bow
+  stick + rope
+arrow (bone, poison, fire)
+  stick + feather
+bomb
+  booze + ?
+sticky bomb
+  bomb + tape
+pickaxe
+razor
+rope
+saddle
+sewing kit
+shovel
+
+ARMOUR
+CONTAINERS (carry more)
+  backpack
+  quiver
+  spear bag (carry more spears)
+  water bag
+  napsack

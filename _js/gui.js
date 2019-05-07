@@ -19,8 +19,17 @@ function guiVisualsUpdate() {
   guiButtonDirectionUpdate(JSONplayer[0].gridPositionCurrent);
   defUpdateElement("divRoomGetItemButton", guiGetHTMLItemRoom(gridGetRoomFromGridPosition(JSONplayer[0].gridPositionCurrent)));
 
+
+if (itemCraftCheck().length != 0) {
   defUpdateElement("divPlayerItemCraft", guiCreateHTMLComboBoxItem(itemCraftCheck(), "selPlayerItemCraft"));
+  $("#selPlayerItemCraft").change();
   // defUpdateElement("divPlayerItemCraft", guiGetHTMLComboBoxItemCraft(itemCraftCheck(), "selPlayerItemCraft"));
+} else {
+  defUpdateElement("divPlayerItemCraft", "");
+  defUpdateElement("divPlayerItemCraftItemIngredients", "");
+} //if
+
+
   //MAP
   defUpdateElement("divGrid", guiMapShow(JSONplayer[0].gridPositionCurrent));
   //FUNCTIONALITY
@@ -91,19 +100,6 @@ function guiGetHTMLItemPlayer() {
   return strTemp;
 } //function
 
-// function guiGetHTMLItemCraftPotential() {
-//   var strTemp = "";
-//   var arrTemp = itemCraftCheck();
-//   for (i in arrTemp) {
-//     strTemp += '<button onClick="itemCraftIt('+arrTemp[i][0]+','+arrTemp[i][1]+','+arrTemp[i][2]+');"><img src="'+JSONitem[arrTemp[i][1]].image+'" alt="'+JSONitem[arrTemp[i][1]].name+'"> + <img src="'+JSONitem[arrTemp[i][2]].image+'" alt="'+JSONitem[arrTemp[i][2]].name+'"> = '
-//     for (var a=0;a<JSONitem[arrTemp[i][0]].quantity;a++) {
-//       strTemp += '<img src="'+JSONitem[arrTemp[i][0]].image+'" alt="'+JSONitem[arrTemp[i][0]].name+'">';
-//     } //for
-//     strTemp += '<br>Craft '+JSONitem[arrTemp[i][0]].quantity+' x '+JSONitem[arrTemp[i][0]].name+'</button><br>';
-//     strTemp += '('+JSONitem[arrTemp[i][1]].name+' + '+JSONitem[arrTemp[i][2]].name+' = '+JSONitem[arrTemp[i][0]].quantity+' x '+JSONitem[arrTemp[i][0]].name+')<br>';
-//   } //for
-//   return strTemp;
-// } //function
 
 function guiGetHTMLComboBoxItemCraft(JSONtoUse, strID) {
   var strTemp = "";
@@ -116,24 +112,28 @@ function guiGetHTMLComboBoxItemCraft(JSONtoUse, strID) {
   return strTemp;
 } //function
 
+
 function guiCreateHTMLComboBoxItem(JSONtoUse, strID) {
+  //TODO: sloppy
+  if (!defArrayCheckIfUndefined(JSONtoUse, 0, 0)) JSONtoUse = defArrayRemoveDuplicates(JSONtoUse); //remove duplicates  crafted?
+  // JSONtoUse.sort((a,b) => (a.name  - b.name));
+  // JSONtoUse.sort(dynamicSort("name"));
+  JSONtoUse.sort();
+
   var strTemp = "";
   strTemp += "<select id='"+strID+"'>";
-
-console.log("JSONtoUse[0]: " + JSONtoUse[0]);
-
-  // if (JSONtoUse[0].itemIngredient1.length > 0) {
-  //   JSONtoUse = defArrayRemoveDuplicates(JSONtoUse); //remove duplicates
-  // }
-
   for (i in JSONtoUse) {
-    if (!JSONtoUse[i][0]) {
-      strTemp += "<option value='" + JSONtoUse[i] + "'>" + JSONitem[JSONtoUse[i]].name + "</option>";
+    if (!JSONtoUse[i][0]) { //crafted or ingredient
+      //ingredient
+      strTemp += "<option value='" + JSONtoUse[i] + "'>" + JSONitem[JSONtoUse[i]].name + " 1</option>";
+      // strTemp += "<option value='" + JSONtoUse[i] + "'>" + JSONitem[JSONtoUse[i]].quantity + " x " + JSONitem[JSONtoUse[i]].name + " 1</option>";
     } else {
-      strTemp += "<option value='" + JSONtoUse[i][0] + "'>" + JSONitem[JSONtoUse[i][0]].name + "</option>";
-    }
+      //to craft
+      strTemp += "<option value='" + JSONtoUse[i][0] + "'>" + JSONitem[JSONtoUse[i][0]].quantity + " x " + JSONitem[JSONtoUse[i][0]].name + " 2</option>";
+    } //if
   } //for
   strTemp += "</select>";
+  // if (JSONtoUse.length == 0) strTemp = ""; //return nothing is array empty
   return strTemp;
 } //function
 
@@ -142,15 +142,21 @@ function guiGetHTMLComboBoxItemCraftItemIngredients(intItemCraft) {
   defUpdateElement('divPlayerItemCraftItemIngredients', guiCreateHTMLComboBoxItemCraftItemIngredients(intItemCraft));
 } //function
 
+
 function guiCreateHTMLComboBoxItemCraftItemIngredients(intItemCraft) {
   //TODO: clean up & quantities
+  var arrTemp = [];
   var strTemp = "";
-  strTemp += guiCreateHTMLComboBoxItem(JSONitem[intItemCraft].itemIngredient1, "selPlayerItemCraftItemIngredient1");
+  arrTemp = defGetPlayerItemRelevant(JSONitem[intItemCraft].itemIngredient1);
+  strTemp += guiCreateHTMLComboBoxItem(arrTemp, "selPlayerItemCraftItemIngredient1");
+  // strTemp += guiCreateHTMLComboBoxItem(JSONitem[intItemCraft].itemIngredient1, "selPlayerItemCraftItemIngredient1");
   strTemp += "<br>";
-  strTemp += guiCreateHTMLComboBoxItem(JSONitem[intItemCraft].itemIngredient2, "selPlayerItemCraftItemIngredient2");
+  arrTemp = defGetPlayerItemRelevant(JSONitem[intItemCraft].itemIngredient2);
+  strTemp += guiCreateHTMLComboBoxItem(arrTemp, "selPlayerItemCraftItemIngredient2");
+  // strTemp += guiCreateHTMLComboBoxItem(JSONitem[intItemCraft].itemIngredient2, "selPlayerItemCraftItemIngredient2");
+  // if (JSONplayer[0].item.length == 0) strTemp = ""; //return nothing is array empty
   strTemp += "<br>";
-
-  strTemp += '<button id="butCraft">Craft</button>'
+  strTemp += "<button id='butCraft'>Craft</button>";
   return strTemp;
 } //function
 
@@ -184,7 +190,7 @@ function guiCreateDragDrop() {
   $("body").droppable({
     drop: function(event, ui) {
       $("div.ui-tooltip").remove(); //for ui bug
-      console.log("dropped somewhere");
+      // console.log("dropped somewhere");
     } //drop
   });
   $("#dropPickUp").droppable({
@@ -204,6 +210,7 @@ function guiCreateDragDrop() {
     drop: function(event, ui) {
       if (ui.draggable.attr("data-itemLocation") == "player") { //has to be in player's possesion
         itemDrop(ui.draggable.attr("data-itemID"), gridGetRoomFromGridPosition(JSONplayer[0].gridPositionCurrent));
+        $("div.ui-tooltip").remove(); //for ui item tooltip bug
         // console.log("Dropped");
       } else
         console.log("Can't drop");
@@ -233,8 +240,8 @@ function guiMapShow(intRoom) {
       if (arrGird[g][gs][1] != null) {
 
         //SHOW HUNTER
-        // if (arrGird[g][gs][0] == JSONhunter[0].gridPositionCurrent)
-        //     strTemp += "<strong>Hunter</strong>";
+        if (arrGird[g][gs][0] == JSONhunter[0].gridPositionCurrent)
+            strTemp += "<strong>Hunter</strong>";
 
         if ((JSONroom[arrGird[g][gs][1]].visitied == true) || (itemExistsInPlayer(0))) { //possesion of the map
 

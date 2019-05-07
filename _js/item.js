@@ -1,16 +1,40 @@
 
+
+function itemDistributeRoom() {
+  var intItem = 0;
+  var intItems = 0;
+  for (intRoom in JSONroom) {
+    intItems = getRandomInt(JSONgame[0].roomItemsMin, JSONgame[0].roomItemsMax); //sets how many per room
+    JSONroom[intRoom].item = [];
+    for (var a=0;a<intItems;a++) {
+      //every room item (NOT including quantity)
+
+      do {
+        intItem = getRandomInt(0, JSONitem.length-1); //random item
+      } while (JSONitem[intItem].name == "");
+      JSONroom[intRoom].item.push(intItem); //add item to room
+      //quantity TODO
+
+    } //for
+  } //for
+} //function
+
+
 function itemPickUp(intItem) {
   if (JSONplayer[0].item.length >= JSONgame[0].carryLimit) {
     alert("Can't pick up as you have reached your carry limit of " + JSONgame[0].carryLimit);
   } else {
     for (r in JSONroom) {
-      for (i in JSONroom[r].item) {
-        if (JSONitem[JSONroom[r].item[i]].name == JSONitem[intItem].name) {
-          JSONplayer[0].item.push(JSONroom[r].item[i]); //add item to player
-          JSONroom[r].item.splice(i, 1); //remove item from room
-          break; //for quantities
-        } //if
-      } //for
+      if (JSONroom[r].name == JSONroom[gridGetRoomFromGridPosition(JSONplayer[0].gridPositionCurrent)].name) {
+        //same room
+        for (i in JSONroom[r].item) {
+          if (JSONroom[r].item[i] == intItem) {
+            JSONplayer[0].item.push(JSONroom[r].item[i]); //add item to player
+            JSONroom[r].item.splice(i, 1); //remove item from room
+            break; //for quantities TODO sloppy
+          } //if
+        } //for
+      } //if
     } //for
     gameActionEnd();
   } //if
@@ -102,10 +126,11 @@ function itemCraftCheck() {
   for (i in arritemIngredient1) {
     for (ii in arritemIngredient2) {
       if (arritemIngredient1[i][0] == arritemIngredient2[ii][0]) {
-        arrTemp.push([arritemIngredient1[i][0], arritemIngredient1[i][1], arritemIngredient2[ii][1]]);
+        arrTemp.push([parseInt(arritemIngredient1[i][0]), parseInt(arritemIngredient1[i][1]), parseInt(arritemIngredient2[ii][1])]);
       } //if
     } //for
   } //for
+  // console.log(arrTemp);
   return arrTemp;
 } //function
 

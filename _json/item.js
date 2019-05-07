@@ -121,14 +121,14 @@ var JSONitem = [
   },{ //12
     "name"              : "Dishcloth"
     ,"description"      : "A dirty dishcloth"
-    ,"image"            : "_images/image.png"
+    ,"image"            : "_images/item/dishcloth.png"
     ,"itemIngredient1"  : []
     ,"itemIngredient2"  : []
     ,"quantity"         : 1
   },{ //13
     "name"              : "Rag"
     ,"description"      : "An oily rag"
-    ,"image"            : "_images/image.png"
+    ,"image"            : "_images/item/rag.png"
     ,"itemIngredient1"  : []
     ,"itemIngredient2"  : []
     ,"quantity"         : 1
