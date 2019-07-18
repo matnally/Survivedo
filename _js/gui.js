@@ -19,16 +19,14 @@ function guiVisualsUpdate() {
   guiButtonDirectionUpdate(JSONplayer[0].gridPositionCurrent);
   defUpdateElement("divRoomGetItemButton", guiGetHTMLItemRoom(gridGetRoomFromGridPosition(JSONplayer[0].gridPositionCurrent)));
 
-
-if (itemCraftCheck().length != 0) {
-  defUpdateElement("divPlayerItemCraft", guiCreateHTMLComboBoxItem(itemCraftCheck(), "selPlayerItemCraft"));
-  $("#selPlayerItemCraft").change();
-  // defUpdateElement("divPlayerItemCraft", guiGetHTMLComboBoxItemCraft(itemCraftCheck(), "selPlayerItemCraft"));
-} else {
-  defUpdateElement("divPlayerItemCraft", "");
-  defUpdateElement("divPlayerItemCraftItemIngredients", "");
-} //if
-
+  if (itemCraftCheck().length != 0) {
+    defUpdateElement("divPlayerItemCraft", guiCreateHTMLComboBoxItem(itemCraftCheck(), "selPlayerItemCraft"));
+    $("#selPlayerItemCraft").change();
+    // defUpdateElement("divPlayerItemCraft", guiGetHTMLComboBoxItemCraft(itemCraftCheck(), "selPlayerItemCraft"));
+  } else {
+    defUpdateElement("divPlayerItemCraft", "");
+    defUpdateElement("divPlayerItemCraftItemIngredients", "");
+  } //if
 
   //MAP
   defUpdateElement("divGrid", guiMapShow(JSONplayer[0].gridPositionCurrent));
@@ -100,7 +98,6 @@ function guiGetHTMLItemPlayer() {
   return strTemp;
 } //function
 
-
 function guiGetHTMLComboBoxItemCraft(JSONtoUse, strID) {
   var strTemp = "";
   strTemp += "<select id='"+strID+"'>";
@@ -111,7 +108,6 @@ function guiGetHTMLComboBoxItemCraft(JSONtoUse, strID) {
   strTemp += "</select>";
   return strTemp;
 } //function
-
 
 function guiCreateHTMLComboBoxItem(JSONtoUse, strID) {
   //TODO: sloppy
@@ -137,11 +133,9 @@ function guiCreateHTMLComboBoxItem(JSONtoUse, strID) {
   return strTemp;
 } //function
 
-
 function guiGetHTMLComboBoxItemCraftItemIngredients(intItemCraft) {
   defUpdateElement('divPlayerItemCraftItemIngredients', guiCreateHTMLComboBoxItemCraftItemIngredients(intItemCraft));
 } //function
-
 
 function guiCreateHTMLComboBoxItemCraftItemIngredients(intItemCraft) {
   //TODO: clean up & quantities
@@ -160,9 +154,6 @@ function guiCreateHTMLComboBoxItemCraftItemIngredients(intItemCraft) {
   return strTemp;
 } //function
 
-
-
-
 function guiCreateDragDrop() {
   //GLOBALS
   $(".draggable").draggable({
@@ -174,7 +165,6 @@ function guiCreateDragDrop() {
   $(".droppable").droppable({
     hoverClass: "droppable-highlight"
   });
-
 
   $(".draggable").tooltip({
     track: true
@@ -226,7 +216,6 @@ function guiCreateDragDrop() {
     } //drop
   });
 } //function
-
 
 function guiMapShow(intRoom) {
 

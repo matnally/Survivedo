@@ -35,3 +35,7 @@ function defGetPlayerItemRelevant(arrTemp) { //returns arr item ingredients that
   } //for
   return arrTempReturn;
 } //function
+
+function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (Math.floor(max) - Math.ceil(min) + 1)) + Math.ceil(min);
+}

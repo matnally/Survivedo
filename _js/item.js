@@ -1,5 +1,4 @@
 
-
 function itemDistributeRoom() {
   var intItem = 0;
   var intItems = 0;
@@ -7,7 +6,7 @@ function itemDistributeRoom() {
     intItems = getRandomInt(JSONgame[0].roomItemsMin, JSONgame[0].roomItemsMax); //sets how many per room
     JSONroom[intRoom].item = [];
     for (var a=0;a<intItems;a++) {
-      //every room item (NOT including quantity)
+      //for every room item (NOT including quantity of item)
 
       do {
         intItem = getRandomInt(0, JSONitem.length-1); //random item
@@ -18,7 +17,6 @@ function itemDistributeRoom() {
     } //for
   } //for
 } //function
-
 
 function itemPickUp(intItem) {
   if (JSONplayer[0].item.length >= JSONgame[0].carryLimit) {
@@ -85,16 +83,16 @@ function itemUse(intItem) {
       console.log("itemUse-switch-default");
   } //switch
 
-  // if (boolTemp == true)
-
-
-  // if ((itemExistsInPlayer(JSONitem[intItem].itemUse)) || (!JSONitem[intItem].itemUse)) {
-  //   console.log("Use " + JSONitem[intItem].name);
-  //   itemRemoveFromPlayer(intItem);
-  //   gameActionEnd();
-  // } else {
-  //   console.log("You can't use " + JSONitem[intItem].name + " because you don't have " + JSONitem[JSONitem[intItem].itemUse].name);
-  // } //if
+  if (boolTemp == true) {
+    //able to use
+    if ((itemExistsInPlayer(JSONitem[intItem].itemUse)) || (!JSONitem[intItem].itemUse)) {
+      console.log("Use " + JSONitem[intItem].name);
+      itemRemoveFromPlayer(intItem);
+      gameActionEnd();
+    } else {
+      console.log("You can't use " + JSONitem[intItem].name + " because you don't have " + JSONitem[JSONitem[intItem].itemUse].name);
+    } //if
+  } //if
 
 } //function
 
