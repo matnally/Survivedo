@@ -6,4 +6,7 @@ var JSONconfig = [{
   ,"txtMove"            : "You entered the"
   ,"txtRoomItemVisible" : "You can see"
   ,"txtRoomItemPrefix"  : "-"
+  //ITEMS
+  ,"txtTitleItemToCraft"            : "Can Craft"
+  ,"txtTitleItemToCraftIngredients" : "Using Ingredients"
 }];

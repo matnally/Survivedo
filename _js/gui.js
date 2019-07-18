@@ -20,7 +20,7 @@ function guiVisualsUpdate() {
   defUpdateElement("divRoomGetItemButton", guiGetHTMLItemRoom(gridGetRoomFromGridPosition(JSONplayer[0].gridPositionCurrent)));
 
   if (itemCraftCheck().length != 0) {
-    defUpdateElement("divPlayerItemCraft", guiCreateHTMLComboBoxItem(itemCraftCheck(), "selPlayerItemCraft"));
+    defUpdateElement("divPlayerItemCraft", "<p>"+JSONconfig[0].txtTitleItemToCraft+"</p>" + guiCreateHTMLComboBoxItem(itemCraftCheck(), "selPlayerItemCraft"));
     $("#selPlayerItemCraft").change();
     // defUpdateElement("divPlayerItemCraft", guiGetHTMLComboBoxItemCraft(itemCraftCheck(), "selPlayerItemCraft"));
   } else {
@@ -98,16 +98,16 @@ function guiGetHTMLItemPlayer() {
   return strTemp;
 } //function
 
-function guiGetHTMLComboBoxItemCraft(JSONtoUse, strID) {
-  var strTemp = "";
-  strTemp += "<select id='"+strID+"'>";
-  JSONtoUse = defArrayRemoveDuplicates(JSONtoUse); //remove duplicates
-  for (i in JSONtoUse) {
-    strTemp += "<option value='" + JSONtoUse[i][0] + "'>" + JSONitem[JSONtoUse[i][0]].name + "</option>";
-  } //for
-  strTemp += "</select>";
-  return strTemp;
-} //function
+// function guiGetHTMLComboBoxItemCraft(JSONtoUse, strID) {
+//   var strTemp = "";
+//   strTemp += "<select id='"+strID+"'>";
+//   JSONtoUse = defArrayRemoveDuplicates(JSONtoUse); //remove duplicates
+//   for (i in JSONtoUse) {
+//     strTemp += "<option value='" + JSONtoUse[i][0] + "'>" + JSONitem[JSONtoUse[i][0]].name + "</option>";
+//   } //for
+//   strTemp += "</select>";
+//   return strTemp;
+// } //function
 
 function guiCreateHTMLComboBoxItem(JSONtoUse, strID) {
   //TODO: sloppy
@@ -117,15 +117,18 @@ function guiCreateHTMLComboBoxItem(JSONtoUse, strID) {
   JSONtoUse.sort();
 
   var strTemp = "";
+
   strTemp += "<select id='"+strID+"'>";
   for (i in JSONtoUse) {
     if (!JSONtoUse[i][0]) { //crafted or ingredient
       //ingredient
-      strTemp += "<option value='" + JSONtoUse[i] + "'>" + JSONitem[JSONtoUse[i]].name + " 1</option>";
+      strTemp += "<option value='" + JSONtoUse[i] + "'>" + JSONitem[JSONtoUse[i]].name + "</option>";
+      // strTemp += "<option value='" + JSONtoUse[i] + "'>" + JSONitem[JSONtoUse[i]].name + " 1</option>";
       // strTemp += "<option value='" + JSONtoUse[i] + "'>" + JSONitem[JSONtoUse[i]].quantity + " x " + JSONitem[JSONtoUse[i]].name + " 1</option>";
     } else {
       //to craft
-      strTemp += "<option value='" + JSONtoUse[i][0] + "'>" + JSONitem[JSONtoUse[i][0]].quantity + " x " + JSONitem[JSONtoUse[i][0]].name + " 2</option>";
+      strTemp += "<option value='" + JSONtoUse[i][0] + "'>" + JSONitem[JSONtoUse[i][0]].quantity + " x " + JSONitem[JSONtoUse[i][0]].name + "</option>";
+      // strTemp += "<option value='" + JSONtoUse[i][0] + "'>" + JSONitem[JSONtoUse[i][0]].quantity + " x " + JSONitem[JSONtoUse[i][0]].name + " 2</option>";
     } //if
   } //for
   strTemp += "</select>";
@@ -134,13 +137,14 @@ function guiCreateHTMLComboBoxItem(JSONtoUse, strID) {
 } //function
 
 function guiGetHTMLComboBoxItemCraftItemIngredients(intItemCraft) {
-  defUpdateElement('divPlayerItemCraftItemIngredients', guiCreateHTMLComboBoxItemCraftItemIngredients(intItemCraft));
+  defUpdateElement('divPlayerItemCraftItemIngredients', "<p>"+JSONconfig[0].txtTitleItemToCraftIngredients+"</p>" + guiCreateHTMLComboBoxItemCraftItemIngredients(intItemCraft));
 } //function
 
 function guiCreateHTMLComboBoxItemCraftItemIngredients(intItemCraft) {
   //TODO: clean up & quantities
   var arrTemp = [];
   var strTemp = "";
+
   arrTemp = defGetPlayerItemRelevant(JSONitem[intItemCraft].itemIngredient1);
   strTemp += guiCreateHTMLComboBoxItem(arrTemp, "selPlayerItemCraftItemIngredient1");
   // strTemp += guiCreateHTMLComboBoxItem(JSONitem[intItemCraft].itemIngredient1, "selPlayerItemCraftItemIngredient1");
