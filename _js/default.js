@@ -7,20 +7,6 @@ function defJSONshow(strJSON) { //ADMIN
   console.log(JSON.stringify(window[strJSON]));
 } //function
 
-function defArrayRemoveDuplicates(JSONtoUse) { //ADMIN
-  var arrTemp = [];
-  var carr = [];
-  var rarr = [];
-  var j = -1;
-  for (var i = 0, l = JSONtoUse.length; i < l; i++) {
-    if (carr[JSONtoUse[i][0]] !== true) {
-      carr[JSONtoUse[i][0]] = true;
-      arrTemp[++j] = JSONtoUse[i];
-    } //if
-  } //for
-  return arrTemp;
-} //function
-
 function defArrayCheckIfUndefined(arrTemp, intIndex1, intIndex2) {
   try { return arrTemp[intIndex1][intIndex2] === undefined; } catch(e) { return true; }
 } //function
@@ -39,3 +25,34 @@ function defGetPlayerItemRelevant(arrTemp) { //returns arr item ingredients that
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (Math.floor(max) - Math.ceil(min) + 1)) + Math.ceil(min);
 }
+
+
+
+
+
+
+
+//TODO: refactor to one function?
+
+function defArrayRemoveDuplicatesCraft(JSONtoUse) {
+  var arrTemp = [];
+  var carr = [];
+  var rarr = [];
+  var j = -1;
+  for (var i = 0, l = JSONtoUse.length; i < l; i++) {
+    if (carr[JSONtoUse[i][0]] !== true) {
+      carr[JSONtoUse[i][0]] = true;
+      arrTemp[++j] = JSONtoUse[i];
+    } //if
+  } //for
+  return arrTemp;
+} //function
+
+function defArrayRemoveDuplicatesIngredients(JSONtoUse) {
+  //TODO: testing!
+  var arrTemp = [];
+  $.each(JSONtoUse, function(i, el){
+      if($.inArray(el, arrTemp) === -1) arrTemp.push(el);
+  });
+  return arrTemp;
+} //function

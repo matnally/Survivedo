@@ -98,41 +98,29 @@ function guiGetHTMLItemPlayer() {
   return strTemp;
 } //function
 
-// function guiGetHTMLComboBoxItemCraft(JSONtoUse, strID) {
-//   var strTemp = "";
-//   strTemp += "<select id='"+strID+"'>";
-//   JSONtoUse = defArrayRemoveDuplicates(JSONtoUse); //remove duplicates
-//   for (i in JSONtoUse) {
-//     strTemp += "<option value='" + JSONtoUse[i][0] + "'>" + JSONitem[JSONtoUse[i][0]].name + "</option>";
-//   } //for
-//   strTemp += "</select>";
-//   return strTemp;
-// } //function
-
 function guiCreateHTMLComboBoxItem(JSONtoUse, strID) {
-  //TODO: sloppy
-  if (!defArrayCheckIfUndefined(JSONtoUse, 0, 0)) JSONtoUse = defArrayRemoveDuplicates(JSONtoUse); //remove duplicates  crafted?
-  // JSONtoUse.sort((a,b) => (a.name  - b.name));
-  // JSONtoUse.sort(dynamicSort("name"));
-  JSONtoUse.sort();
-
+  //return html combo for item (to craft or ingredient)
   var strTemp = "";
+
+  if (!defArrayCheckIfUndefined(JSONtoUse, 0, 0))
+    JSONtoUse = defArrayRemoveDuplicatesCraft(JSONtoUse); //remove duplicates from crafted
+  else
+    JSONtoUse = defArrayRemoveDuplicatesIngredients(JSONtoUse); //remove duplicates from ingredients
+
+  JSONtoUse.sort();
 
   strTemp += "<select id='"+strID+"'>";
   for (i in JSONtoUse) {
     if (!JSONtoUse[i][0]) { //crafted or ingredient
       //ingredient
       strTemp += "<option value='" + JSONtoUse[i] + "'>" + JSONitem[JSONtoUse[i]].name + "</option>";
-      // strTemp += "<option value='" + JSONtoUse[i] + "'>" + JSONitem[JSONtoUse[i]].name + " 1</option>";
-      // strTemp += "<option value='" + JSONtoUse[i] + "'>" + JSONitem[JSONtoUse[i]].quantity + " x " + JSONitem[JSONtoUse[i]].name + " 1</option>";
     } else {
       //to craft
       strTemp += "<option value='" + JSONtoUse[i][0] + "'>" + JSONitem[JSONtoUse[i][0]].quantity + " x " + JSONitem[JSONtoUse[i][0]].name + "</option>";
-      // strTemp += "<option value='" + JSONtoUse[i][0] + "'>" + JSONitem[JSONtoUse[i][0]].quantity + " x " + JSONitem[JSONtoUse[i][0]].name + " 2</option>";
     } //if
   } //for
   strTemp += "</select>";
-  // if (JSONtoUse.length == 0) strTemp = ""; //return nothing is array empty
+
   return strTemp;
 } //function
 
@@ -141,18 +129,13 @@ function guiGetHTMLComboBoxItemCraftItemIngredients(intItemCraft) {
 } //function
 
 function guiCreateHTMLComboBoxItemCraftItemIngredients(intItemCraft) {
-  //TODO: clean up & quantities
   var arrTemp = [];
   var strTemp = "";
-
   arrTemp = defGetPlayerItemRelevant(JSONitem[intItemCraft].itemIngredient1);
   strTemp += guiCreateHTMLComboBoxItem(arrTemp, "selPlayerItemCraftItemIngredient1");
-  // strTemp += guiCreateHTMLComboBoxItem(JSONitem[intItemCraft].itemIngredient1, "selPlayerItemCraftItemIngredient1");
   strTemp += "<br>";
   arrTemp = defGetPlayerItemRelevant(JSONitem[intItemCraft].itemIngredient2);
   strTemp += guiCreateHTMLComboBoxItem(arrTemp, "selPlayerItemCraftItemIngredient2");
-  // strTemp += guiCreateHTMLComboBoxItem(JSONitem[intItemCraft].itemIngredient2, "selPlayerItemCraftItemIngredient2");
-  // if (JSONplayer[0].item.length == 0) strTemp = ""; //return nothing is array empty
   strTemp += "<br>";
   strTemp += "<button id='butCraft'>Craft</button>";
   return strTemp;
