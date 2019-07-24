@@ -92,6 +92,16 @@
 
         <div id="divPlayerGetItemButton"></div>
 
+        <select id="selArrayOrderItemKey">
+          <option value="name">Name</option>
+          <option value="description">Description</option>
+        </select>
+        <select id="selArrayOrderItemOrder">
+          <option value="asc">Asc</option>
+          <option value="desc">Desc</option>
+        </select>
+        <button onClick="defaultArrayOrder(JSONplayer[0].item);">Sort array</button><br>
+
         <div id="divPlayerItemCraft"></div>
         <div id="divPlayerItemCraftItemIngredients"></div>
 
@@ -115,16 +125,16 @@
 
   <br><br>
   <h2>Admin</h2>
-  <button onClick="defJSONshow('JSONplayer');">JSONplayer</button>
-  <br>
-  <button onClick="defJSONshow('JSONroom');">JSONroom</button>
-  <br>
-  <button onClick="adminPickUpAllInRoom();">Pick up all</button>
-  <br>
-  <button onClick="adminShowAllItemsDetails();">Display items & no's</button>
-  <br>
-  <button onClick="adminShowAllItemsCraft();">Display Craftable</button>
-  <br>
+  <button onClick="adminPickUpAllInRoom();">Pick up all</button><br><br>
+
+  <button onClick="adminShowMap();">Show Gird (adds map and refreshes)</button><br>
+  <button onClick="adminFindHunter();">Locate Hunter</button><br><br>
+
+  <button onClick="adminShowAllItemsDetails();">Display items & no's</button><br>
+  <button onClick="adminShowAllItemsCraft();">Display Craftable</button><br><br>
+
+  <button onClick="defJSONshow('JSONplayer');">JSONplayer</button><br>
+  <button onClick="defJSONshow('JSONroom');">JSONroom</button><br>
 
 
   <script>

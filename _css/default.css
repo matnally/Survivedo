@@ -36,6 +36,39 @@ button {
   vertical-align: top;
   /* padding: 2px; */
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#divGrid .divCell {
+}
+
+.visited {
+  border: 1px #CCC solid;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 /* END TABLES */
 
 /* START JQUERY UI */

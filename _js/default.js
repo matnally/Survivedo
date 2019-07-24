@@ -1,4 +1,35 @@
 
+//TODO: clean up
+function defaultArrayOrder(JSONtoUse) {
+  JSONtoUse = JSONtoUse.sort(defaultArrayOrderSort(document.getElementById("selArrayOrderItemKey").value, document.getElementById("selArrayOrderItemOrder").value));
+  gameActionEnd();
+} //function
+function defaultArrayOrderSort(key, order) {
+  return function(a, b) {
+    if(!JSONitem[a].hasOwnProperty(key) || !JSONitem[b].hasOwnProperty(key)) return 0; // property doesn't exist on either object
+
+    const varA = (typeof JSONitem[a][key] === 'string') ? JSONitem[a][key].toUpperCase() : JSONitem[a][key];
+    const varB = (typeof JSONitem[b][key] === 'string') ? JSONitem[b][key].toUpperCase() : JSONitem[b][key];
+
+    let comparison = 0;
+    if (varA > varB) comparison = 1;
+    else if (varA < varB) comparison = -1;
+
+    return ((order == 'desc') ? (comparison * -1) : comparison);
+  }; //return function(a, b)
+} //function
+
+
+
+
+
+
+
+
+
+
+
+
 function defUpdateElement(elemName, strTemp) {
   document.getElementById(elemName).innerHTML = strTemp;
 } //function

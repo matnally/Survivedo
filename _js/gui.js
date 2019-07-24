@@ -91,9 +91,7 @@ function guiGetHTMLItemRoom(intRoom) {
 function guiGetHTMLItemPlayer() {
   var strTemp = "";
   for (i in JSONplayer[0].item) {
-    // strTemp += '<img title="'+JSONitem[JSONplayer[0].item[i]].name+'" data-itemID='+JSONplayer[0].item[i]+' data-itemLocation="player" class="draggable" src="'+JSONitem[JSONplayer[0].item[i]].image+'" alt="'+JSONitem[JSONplayer[0].item[i]].name+'">';
     strTemp += '<img title="" data-itemID='+JSONplayer[0].item[i]+' data-itemLocation="player" class="draggable" src="'+JSONitem[JSONplayer[0].item[i]].image+'" alt="'+JSONitem[JSONplayer[0].item[i]].name+'">';
-    // strTemp += '&nbsp;';
   } //for
   return strTemp;
 } //function
@@ -199,7 +197,7 @@ function guiCreateDragDrop() {
         itemUse(ui.draggable.attr("data-itemID"));
         // console.log("Used");
       } else
-        console.log("Can't used");
+        console.log("Can't use");
     } //drop
   });
 } //function
@@ -211,23 +209,24 @@ function guiMapShow(intRoom) {
   for (g in arrGird) {
     strTemp += '<div class="divRow">';
     for (gs in arrGird[g]) {
-      strTemp += '<div class="divCell">';
+
+      //VISITED FORMATTING
+      if ((arrGird[g][gs][1] != null) && (JSONroom[arrGird[g][gs][1]].visitied == true))
+        strTemp += '<div class="divCell visited">';
+      else
+        strTemp += '<div class="divCell">';
 
       if (arrGird[g][gs][1] != null) {
 
         //SHOW HUNTER
-        if (arrGird[g][gs][0] == JSONhunter[0].gridPositionCurrent)
-            strTemp += "<strong>Hunter</strong>";
+        // if (arrGird[g][gs][0] == JSONhunter[0].gridPositionCurrent)
+        //     strTemp += "<strong>Hunter</strong>";
 
         if ((JSONroom[arrGird[g][gs][1]].visitied == true) || (itemExistsInPlayer(0))) { //possesion of the map
 
-          if (arrGird[g][gs][0] == intRoom) {
+          if (arrGird[g][gs][0] == intRoom)
             strTemp += "<strong>" + JSONroom[arrGird[g][gs][1]].name + "</strong>";
-            for (i in JSONroom[arrGird[g][gs][1]].item) {
-              // console.log("Item ID : " + JSONroom[arrGird[g][gs][1]-1].item[i])
-              // strTemp += "<br>-" + JSONitem[JSONroom[arrGird[g][gs][1]].item[i]].name;
-            } //for
-          } else
+          else
             strTemp += JSONroom[arrGird[g][gs][1]].name;
 
         } //if

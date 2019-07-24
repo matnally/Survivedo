@@ -1,4 +1,13 @@
 
+function adminFindHunter() {
+  console.log("Hunter is currently in " + JSONroom[gridGetRoomFromGridPosition(JSONhunter[0].gridPositionCurrent)].name);
+} //function
+
+function adminShowMap() {
+  JSONplayer[0].item.push(0); //adds map to player's inventory
+  defUpdateElement("divGrid", guiMapShow(JSONplayer[0].gridPositionCurrent));
+} //function
+
 function adminPickUpAllInRoom() {
   do {
     itemPickUp(JSONroom[gridGetRoomFromGridPosition(JSONplayer[0].gridPositionCurrent)].item[0]); //splicing while picking up so just get the 0th item
