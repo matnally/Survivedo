@@ -7,13 +7,11 @@ function itemDistributeRoom() {
     JSONroom[intRoom].item = [];
     for (var a=0;a<intItems;a++) {
       //for every room item (NOT including quantity of item)
-
       do {
         intItem = getRandomInt(0, JSONitem.length-1); //random item
-      } while (JSONitem[intItem].name == "");
+      } while (JSONitem[intItem].name == ""); //so no blank JSON nodes!
       JSONroom[intRoom].item.push(intItem); //add item to room
-      //quantity TODO
-
+      //TODO: quantity | books (only one?)
     } //for
   } //for
 } //function
@@ -54,47 +52,99 @@ function itemRemoveFromPlayer(intItem) {
 } //function
 
 function itemCraftIt(intItem, intitemIngredient1, intitemIngredient2) { //calling function itemCraft returns error!
-  itemRemoveFromPlayer(intitemIngredient1); //two loops as splice changes array
-  itemRemoveFromPlayer(intitemIngredient2); //two loops as splice changes array
-  for (var a=0;a<JSONitem[intItem].quantity;a++) {
-    JSONplayer[0].item.push(intItem); //add item to player
-  } //for
-  console.log("Crafted " + JSONitem[intItem].name + " using " + JSONitem[intitemIngredient1].name + " and " + JSONitem[intitemIngredient2].name);
-  gameActionEnd();
-} //function
 
-function itemUse(intItem) {
-
-  var boolTemp = false;
-  switch(true) {
-    case (itemExistsInPlayer(JSONitem[intItem].itemUse) == true):
-      console.log("itemExistsInPlayer");
-      boolTemp = true;
-    break;
-    case (JSONitem[intItem].itemUse == true):
-      console.log("JSONitem[intItem].itemUse");
-      boolTemp = true;
-    break;
-    case (!JSONitem[intItem].itemUse):
-      console.log("!JSONitem[intItem].itemUse");
-      boolTemp = true;
-    break;
-    default:
-      console.log("itemUse-switch-default");
-  } //switch
-
-  if (boolTemp == true) {
-    //able to use
-    if ((itemExistsInPlayer(JSONitem[intItem].itemUse)) || (!JSONitem[intItem].itemUse)) {
-      console.log("Use " + JSONitem[intItem].name);
-      itemRemoveFromPlayer(intItem);
-      gameActionEnd();
-    } else {
-      console.log("You can't use " + JSONitem[intItem].name + " because you don't have " + JSONitem[JSONitem[intItem].itemUse].name);
-    } //if
+  console.log("intItem: " + intItem);
+  if (!itemExistsInArray(JSONplayer[0].itemHowToCraft, intItem)) {
+    console.log("you do not know how to craft this item yet!");
+  } else {
+    //able to craft
+    itemRemoveFromPlayer(intitemIngredient1); //two loops as splice changes array
+    itemRemoveFromPlayer(intitemIngredient2); //two loops as splice changes array
+    for (var a=0;a<JSONitem[intItem].quantity;a++) {
+      JSONplayer[0].item.push(intItem); //add item to player
+    } //for
+    console.log("Crafted " + JSONitem[intItem].name + " using " + JSONitem[intitemIngredient1].name + " and " + JSONitem[intitemIngredient2].name);
+    gameActionEnd();
   } //if
 
 } //function
+
+
+
+
+
+
+
+
+
+
+
+function itemUse(intItem) {
+
+  if (JSONitem[intItem].itemHowToCraft) {
+    itemUseHowToBook(intItem); //how to book
+  } else {
+    itemUseNormal(intItem); //normal item
+  } //if
+
+} //function
+
+function itemUseHowToBook(intItem) {
+  JSONplayer[0].itemHowToCraft.push(JSONitem[intItem].itemHowToCraft);
+  itemRemoveFromPlayer(intItem);
+  console.log("Added knowledge of how to create a " + JSONitem[JSONitem[intItem].itemHowToCraft].name);
+  console.log("You discard the book after reading");
+  gameActionEnd();
+} //function
+
+function itemUseNormal(intItem) {
+
+  var boolTemp = false;
+
+  if (!itemExistsInArray(JSONplayer[0].itemHowToCraft, JSONitem[intItem].itemHowToCraft)) {
+    console.log("you do not know how to craft this yet!");
+  } else {
+    //check if they actually use it
+    switch(true) {
+      case (itemExistsInArray(JSONplayer[0].item, JSONitem[intItem].itemUse) == true):
+        console.log("itemExistsInPlayer");
+        boolTemp = true;
+      break;
+      case (JSONitem[intItem].itemUse == true):
+        console.log("JSONitem[intItem].itemUse");
+        boolTemp = true;
+      break;
+      case (!JSONitem[intItem].itemUse):
+        console.log("!JSONitem[intItem].itemUse");
+        boolTemp = true;
+      break;
+      default:
+        console.log("itemUse-switch-default");
+    } //switch
+
+    if (boolTemp == true) {
+      //able to use
+      if ((itemExistsInArray(JSONplayer[0].item, JSONitem[intItem].itemUse)) || (!JSONitem[intItem].itemUse)) {
+        console.log("Use " + JSONitem[intItem].name);
+        itemRemoveFromPlayer(intItem);
+        gameActionEnd();
+      } else {
+        console.log("You can't use " + JSONitem[intItem].name + " because you don't have " + JSONitem[JSONitem[intItem].itemUse].name);
+      } //if
+    } //if
+
+  } //if
+
+} //function
+
+
+
+
+
+
+
+
+
 
 
 //////////////////////////
@@ -128,14 +178,13 @@ function itemCraftCheck() {
       } //if
     } //for
   } //for
-  // console.log(arrTemp);
   return arrTemp;
 } //function
 
-function itemExistsInPlayer(intItem) {
+function itemExistsInArray(JSONtoUse, intItem) {
   var boolTemp = false;
-  for (i in JSONplayer[0].item) {
-    if (JSONplayer[0].item[i] == intItem)
+  for (i in JSONtoUse) {
+    if (JSONtoUse[i] == intItem)
       boolTemp = true;
   } //for
   return boolTemp;

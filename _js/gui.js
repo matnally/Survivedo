@@ -19,10 +19,10 @@ function guiVisualsUpdate() {
   guiButtonDirectionUpdate(JSONplayer[0].gridPositionCurrent);
   defUpdateElement("divRoomGetItemButton", guiGetHTMLItemRoom(gridGetRoomFromGridPosition(JSONplayer[0].gridPositionCurrent)));
 
+  //TODO: only show items you know how to craft?
   if (itemCraftCheck().length != 0) {
     defUpdateElement("divPlayerItemCraft", "<p>"+JSONconfig[0].txtTitleItemToCraft+"</p>" + guiCreateHTMLComboBoxItem(itemCraftCheck(), "selPlayerItemCraft"));
     $("#selPlayerItemCraft").change();
-    // defUpdateElement("divPlayerItemCraft", guiGetHTMLComboBoxItemCraft(itemCraftCheck(), "selPlayerItemCraft"));
   } else {
     defUpdateElement("divPlayerItemCraft", "");
     defUpdateElement("divPlayerItemCraftItemIngredients", "");
@@ -41,7 +41,7 @@ function guiGetHTMLTextRoom() {
   strTemp += "<br><br>";
   strTemp += JSONroom[gridGetRoomFromGridPosition(JSONplayer[0].gridPositionCurrent)].description;
   strTemp += "</p>";
-  return strTemp;
+  return strTemp;TODO
 } //function
 
 function guiGetHTMLTextRoomItem() {
@@ -218,11 +218,11 @@ function guiMapShow(intRoom) {
 
       if (arrGird[g][gs][1] != null) {
 
-        //SHOW HUNTER
-        // if (arrGird[g][gs][0] == JSONhunter[0].gridPositionCurrent)
-        //     strTemp += "<strong>Hunter</strong>";
+//SHOW HUNTER
+// if (arrGird[g][gs][0] == JSONhunter[0].gridPositionCurrent)
+//     strTemp += "<strong>Hunter</strong>";
 
-        if ((JSONroom[arrGird[g][gs][1]].visitied == true) || (itemExistsInPlayer(0))) { //possesion of the map
+        if ((JSONroom[arrGird[g][gs][1]].visitied == true) || (itemExistsInArray(JSONplayer[0].item, 0))) { //possesion of the map
 
           if (arrGird[g][gs][0] == intRoom)
             strTemp += "<strong>" + JSONroom[arrGird[g][gs][1]].name + "</strong>";

@@ -41,6 +41,7 @@ var JSONitem = [
     ,"itemIngredient1"  : []
     ,"itemIngredient2"  : []
     ,"quantity"         : 1
+    ,"itemHowToCraft"   : 0 //for HowTo books only
   },{ //1
     "name"              : "Full bottle of whiskey"
     ,"description"      : "An unopened bottle of 12 year old whiskey"
@@ -48,6 +49,7 @@ var JSONitem = [
     ,"itemIngredient1"  : []
     ,"itemIngredient2"  : []
     ,"quantity"         : 1
+    ,"itemHowToCraft"   : 0 //for HowTo books only
   },{ //2
     "name"              : "Half bottle of whiskey"
     ,"description"      : "A half bottle of 12 year old whiskey"
@@ -55,6 +57,7 @@ var JSONitem = [
     ,"itemIngredient1"  : [21]
     ,"itemIngredient2"  : [1]
     ,"quantity"         : 2 //only if crafted
+    ,"itemHowToCraft"   : 0 //for HowTo books only
   },{ //3
     "name"              : "Full bottle of vodka"
     ,"description"      : "An unopened bottle of Russian vodka"
@@ -62,6 +65,7 @@ var JSONitem = [
     ,"itemIngredient1"  : []
     ,"itemIngredient2"  : []
     ,"quantity"         : 1
+    ,"itemHowToCraft"   : 0 //for HowTo books only
   },{ //4
     "name"              : "Half bottle of vodka"
     ,"description"      : "A half bottle of Russian vodka"
@@ -69,6 +73,7 @@ var JSONitem = [
     ,"itemIngredient1"  : [21]
     ,"itemIngredient2"  : [3]
     ,"quantity"         : 2 //only if crafted
+    ,"itemHowToCraft"   : 0 //for HowTo books only
   },{ //5
     "name"              : "Full bottle of brandy"
     ,"description"      : "An unopened bottle of expensive brandy"
@@ -76,6 +81,7 @@ var JSONitem = [
     ,"itemIngredient1"  : []
     ,"itemIngredient2"  : []
     ,"quantity"         : 1
+    ,"itemHowToCraft"   : 0 //for HowTo books only
   },{ //6
     "name"              : "Half bottle of brandy"
     ,"description"      : "A half bottle of expensive brandy"
@@ -83,6 +89,7 @@ var JSONitem = [
     ,"itemIngredient1"  : [21]
     ,"itemIngredient2"  : [5]
     ,"quantity"         : 2 //only if crafted
+    ,"itemHowToCraft"   : 0 //for HowTo books only
   },{ //7
     "name"              : ""
     ,"description"      : ""
@@ -90,6 +97,7 @@ var JSONitem = [
     ,"itemIngredient1"  : []
     ,"itemIngredient2"  : []
     ,"quantity"         : 1
+    ,"itemHowToCraft"   : 0 //for HowTo books only
   },{ //8
     "name"              : ""
     ,"description"      : ""
@@ -97,6 +105,7 @@ var JSONitem = [
     ,"itemIngredient1"  : []
     ,"itemIngredient2"  : []
     ,"quantity"         : 1
+    ,"itemHowToCraft"   : 0 //for HowTo books only
   },{ //9
     "name"              : ""
     ,"description"      : ""
@@ -104,6 +113,7 @@ var JSONitem = [
     ,"itemIngredient1"  : []
     ,"itemIngredient2"  : []
     ,"quantity"         : 1
+    ,"itemHowToCraft"   : 0 //for HowTo books only
   },{ //10
     "name"              : ""
     ,"description"      : ""
@@ -111,6 +121,7 @@ var JSONitem = [
     ,"itemIngredient1"  : []
     ,"itemIngredient2"  : []
     ,"quantity"         : 1
+    ,"itemHowToCraft"   : 0 //for HowTo books only
   },{ //11
     "name"              : "Bedsheets"
     ,"description"      : "Clean bedsheets"
@@ -118,6 +129,7 @@ var JSONitem = [
     ,"itemIngredient1"  : []
     ,"itemIngredient2"  : []
     ,"quantity"         : 1
+    ,"itemHowToCraft"   : 0 //for HowTo books only
   },{ //12
     "name"              : "Dishcloth"
     ,"description"      : "A dirty dishcloth"
@@ -125,6 +137,7 @@ var JSONitem = [
     ,"itemIngredient1"  : []
     ,"itemIngredient2"  : []
     ,"quantity"         : 1
+    ,"itemHowToCraft"   : 0 //for HowTo books only
   },{ //13
     "name"              : "Rag"
     ,"description"      : "An oily rag"
@@ -132,6 +145,7 @@ var JSONitem = [
     ,"itemIngredient1"  : []
     ,"itemIngredient2"  : []
     ,"quantity"         : 1
+    ,"itemHowToCraft"   : 0 //for HowTo books only
   },{ //14
     "name"              : "Socks"
     ,"description"      : "A pair of sports socks"
@@ -139,6 +153,7 @@ var JSONitem = [
     ,"itemIngredient1"  : []
     ,"itemIngredient2"  : []
     ,"quantity"         : 1
+    ,"itemHowToCraft"   : 0 //for HowTo books only
   },{ //15
     "name"              : "Underwear"
     ,"description"      : "Some soiled underwear"
@@ -146,6 +161,7 @@ var JSONitem = [
     ,"itemIngredient1"  : []
     ,"itemIngredient2"  : []
     ,"quantity"         : 1
+    ,"itemHowToCraft"   : 0 //for HowTo books only
   },{ //16
     "name"              : "Towel"
     ,"description"      : "A bathroom towel"
@@ -153,6 +169,7 @@ var JSONitem = [
     ,"itemIngredient1"  : []
     ,"itemIngredient2"  : []
     ,"quantity"         : 1
+    ,"itemHowToCraft"   : 0 //for HowTo books only
   },{ //17
     "name"              : "T-Shirt"
     ,"description"      : "A clean white t-shirt"
@@ -160,6 +177,7 @@ var JSONitem = [
     ,"itemIngredient1"  : []
     ,"itemIngredient2"  : []
     ,"quantity"         : 1
+    ,"itemHowToCraft"   : 0 //for HowTo books only
   },{ //18
     "name"              : "Newspaper"
     ,"description"      : "Yesterday's newspaper"
@@ -167,6 +185,7 @@ var JSONitem = [
     ,"itemIngredient1"  : []
     ,"itemIngredient2"  : []
     ,"quantity"         : 1
+    ,"itemHowToCraft"   : 0 //for HowTo books only
   },{ //19
     "name"              : "Tea towel"
     ,"description"      : "A kitchen tea towel"
@@ -174,6 +193,7 @@ var JSONitem = [
     ,"itemIngredient1"  : []
     ,"itemIngredient2"  : []
     ,"quantity"         : 1
+    ,"itemHowToCraft"   : 0 //for HowTo books only
   },{ //20
     "name"              : ""
     ,"description"      : ""
@@ -181,6 +201,7 @@ var JSONitem = [
     ,"itemIngredient1"  : []
     ,"itemIngredient2"  : []
     ,"quantity"         : 1
+    ,"itemHowToCraft"   : 0 //for HowTo books only
   },{ //21
     "name"              : "Empty bottle"
   	,"description"      : "An empty glass bottle"
@@ -188,6 +209,7 @@ var JSONitem = [
     ,"itemIngredient1"  : []
     ,"itemIngredient2"  : []
     ,"quantity"         : 1
+    ,"itemHowToCraft"   : 0 //for HowTo books only
   },{ //22
     "name"              : "Vase"
     ,"description"      : "An flowerless vase"
@@ -195,6 +217,7 @@ var JSONitem = [
     ,"itemIngredient1"  : []
     ,"itemIngredient2"  : []
     ,"quantity"         : 1
+    ,"itemHowToCraft"   : 0 //for HowTo books only
   },{ //23
     "name"              : "Empty Jar"
     ,"description"      : "Someone has eaten all of the jam from this jar"
@@ -202,6 +225,7 @@ var JSONitem = [
     ,"itemIngredient1"  : []
     ,"itemIngredient2"  : []
     ,"quantity"         : 1
+    ,"itemHowToCraft"   : 0 //for HowTo books only
   },{ //24
     "name"              : "Empty water bottle"
     ,"description"      : "An empty water bottle"
@@ -209,6 +233,7 @@ var JSONitem = [
     ,"itemIngredient1"  : []
     ,"itemIngredient2"  : []
     ,"quantity"         : 1
+    ,"itemHowToCraft"   : 0 //for HowTo books only
   },{ //25
     "name"              : "Glass cup"
     ,"description"      : "An empty glass cup"
@@ -216,6 +241,7 @@ var JSONitem = [
     ,"itemIngredient1"  : []
     ,"itemIngredient2"  : []
     ,"quantity"         : 1
+    ,"itemHowToCraft"   : 0 //for HowTo books only
   },{ //26
     "name"              : ""
     ,"description"      : ""
@@ -223,6 +249,7 @@ var JSONitem = [
     ,"itemIngredient1"  : []
     ,"itemIngredient2"  : []
     ,"quantity"         : 1
+    ,"itemHowToCraft"   : 0 //for HowTo books only
   },{ //27
     "name"              : ""
     ,"description"      : ""
@@ -230,6 +257,7 @@ var JSONitem = [
     ,"itemIngredient1"  : []
     ,"itemIngredient2"  : []
     ,"quantity"         : 1
+    ,"itemHowToCraft"   : 0 //for HowTo books only
   },{ //28
     "name"              : ""
     ,"description"      : ""
@@ -237,6 +265,7 @@ var JSONitem = [
     ,"itemIngredient1"  : []
     ,"itemIngredient2"  : []
     ,"quantity"         : 1
+    ,"itemHowToCraft"   : 0 //for HowTo books only
   },{ //29
     "name"              : ""
     ,"description"      : ""
@@ -244,6 +273,7 @@ var JSONitem = [
     ,"itemIngredient1"  : []
     ,"itemIngredient2"  : []
     ,"quantity"         : 1
+    ,"itemHowToCraft"   : 0 //for HowTo books only
   },{ //30
     "name"              : ""
     ,"description"      : ""
@@ -251,6 +281,7 @@ var JSONitem = [
     ,"itemIngredient1"  : []
     ,"itemIngredient2"  : []
     ,"quantity"         : 1
+    ,"itemHowToCraft"   : 0 //for HowTo books only
   },{ //31
     "name"              : "Molotov Cocktail"
     ,"description"      : "A throwing weapon"
@@ -259,6 +290,7 @@ var JSONitem = [
     ,"itemIngredient2"  : [0,11,12,13,14,15,16,17,18,19] //materials
     ,"itemUse"          : 32
     ,"quantity"         : 1
+    ,"itemHowToCraft"   : 0 //for HowTo books only
   },{ //32
     "name"              : "Lighter"
     ,"description"      : "A zippo"
@@ -267,7 +299,46 @@ var JSONitem = [
     ,"itemIngredient2"  : []
     ,"itemUse"          : false
     ,"quantity"         : 1
+    ,"itemHowToCraft"   : 0 //for HowTo books only
+  },{ //33
+    "name"              : "Book"
+    ,"description"      : "How to create a... Molotov Cocktail"
+    ,"image"            : "_images/item/book.png"
+    ,"itemIngredient1"  : []
+    ,"itemIngredient2"  : []
+    ,"itemUse"          : true
+    ,"quantity"         : 1
+    ,"itemHowToCraft"   : 31 //item you can now craft after reading
+  },{ //???
+    "name"              : "Book"
+    ,"description"      : "How to create a... Half bottle of whiskey"
+    ,"image"            : "_images/item/book.png"
+    ,"itemIngredient1"  : []
+    ,"itemIngredient2"  : []
+    ,"itemUse"          : true
+    ,"quantity"         : 1
+    ,"itemHowToCraft"   : 2 //item you can now craft after reading
+  },{ //???
+    "name"              : "Book"
+    ,"description"      : "How to create a... Half bottle of vodka"
+    ,"image"            : "_images/item/book.png"
+    ,"itemIngredient1"  : []
+    ,"itemIngredient2"  : []
+    ,"itemUse"          : true
+    ,"quantity"         : 1
+    ,"itemHowToCraft"   : 4 //item you can now craft after reading
+  },{ //???
+    "name"              : "Book"
+    ,"description"      : "How to create a... Half bottle of brandy"
+    ,"image"            : "_images/item/book.png"
+    ,"itemIngredient1"  : []
+    ,"itemIngredient2"  : []
+    ,"itemUse"          : true
+    ,"quantity"         : 1
+    ,"itemHowToCraft"   : 6 //item you can now craft after reading
   }
+
+
 
 
 

@@ -8,6 +8,14 @@ function adminShowMap() {
   defUpdateElement("divGrid", guiMapShow(JSONplayer[0].gridPositionCurrent));
 } //function
 
+function adminPickUpAll() {
+  for (i in JSONitem) {
+    if (JSONitem[i].name != "")
+      JSONplayer[0].item.push(i);
+  } //for
+  gameActionEnd();
+} //function
+
 function adminPickUpAllInRoom() {
   do {
     itemPickUp(JSONroom[gridGetRoomFromGridPosition(JSONplayer[0].gridPositionCurrent)].item[0]); //splicing while picking up so just get the 0th item
