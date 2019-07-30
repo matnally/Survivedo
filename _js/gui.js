@@ -19,8 +19,12 @@ function guiVisualsUpdate() {
   guiButtonDirectionUpdate(JSONplayer[0].gridPositionCurrent);
   defUpdateElement("divRoomGetItemButton", guiGetHTMLItemRoom(gridGetRoomFromGridPosition(JSONplayer[0].gridPositionCurrent)));
 
+  //CRAFTING - MOVE TO OWN FUNCTION?
   //TODO: only show items you know how to craft?
   if (itemCraftCheck().length != 0) {
+
+console.log("itemCraftCheck(): " + itemCraftCheck());
+
     defUpdateElement("divPlayerItemCraft", "<p>"+JSONconfig[0].txtTitleItemToCraft+"</p>" + guiCreateHTMLComboBoxItem(itemCraftCheck(), "selPlayerItemCraft"));
     $("#selPlayerItemCraft").change();
   } else {
@@ -80,10 +84,8 @@ function guiButtonDirectionUpdate(intGridPosition) {
 function guiGetHTMLItemRoom(intRoom) {
   var strTemp = "";
   for (i in JSONroom[intRoom].item) {
-    // strTemp += '<img title="'+JSONitem[JSONroom[intRoom].item[i]].name+'" data-itemID='+JSONroom[intRoom].item[i]+' data-itemLocation="room" class="draggable" src="'+JSONitem[JSONroom[intRoom].item[i]].image+'" alt="'+JSONitem[JSONroom[intRoom].item[i]].name+'">';
     if (JSONitem[JSONroom[intRoom].item[i]].name != "")
       strTemp += '<img title="" data-itemID='+JSONroom[intRoom].item[i]+' data-itemLocation="room" class="draggable" src="'+JSONitem[JSONroom[intRoom].item[i]].image+'" alt="'+JSONitem[JSONroom[intRoom].item[i]].name+'">';
-    // strTemp += '&nbsp;';
   } //for
   return strTemp;
 } //function

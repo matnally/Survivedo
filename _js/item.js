@@ -184,8 +184,9 @@ function itemCraftCheck() {
 function itemExistsInArray(JSONtoUse, intItem) {
   var boolTemp = false;
   for (i in JSONtoUse) {
-    if (JSONtoUse[i] == intItem)
+    if (JSONtoUse[i] == intItem) {
       boolTemp = true;
+    } //if
   } //for
   return boolTemp;
 } //function
