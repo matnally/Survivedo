@@ -13,25 +13,16 @@ function guiCreateListeners() {
 function guiVisualsUpdate() {
   //TEXT
   defUpdateElement("spnTextRoomDesc", guiGetHTMLTextRoom());
+  //ITEMS
   defUpdateElement("divPlayerGetItemButton", guiGetHTMLItemPlayer());
   defUpdateElement("spnTextRoomDescItem", guiGetHTMLTextRoomItem());
+  //INTERACTIONS
+  defUpdateElement("divRoomGetInteractions", JSONconfig[0].txtRoomItemInteraction + "<br>" + guiGetHTMLInteractionsRoom(gridGetRoomFromGridPosition(JSONplayer[0].gridPositionCurrent)));
   //BUTTONS
   guiButtonDirectionUpdate(JSONplayer[0].gridPositionCurrent);
   defUpdateElement("divRoomGetItemButton", guiGetHTMLItemRoom(gridGetRoomFromGridPosition(JSONplayer[0].gridPositionCurrent)));
-
-  //CRAFTING - MOVE TO OWN FUNCTION?
-  //TODO: only show items you know how to craft?
-  if (itemCraftCheck().length != 0) {
-
-console.log("itemCraftCheck(): " + itemCraftCheck());
-
-    defUpdateElement("divPlayerItemCraft", "<p>"+JSONconfig[0].txtTitleItemToCraft+"</p>" + guiCreateHTMLComboBoxItem(itemCraftCheck(), "selPlayerItemCraft"));
-    $("#selPlayerItemCraft").change();
-  } else {
-    defUpdateElement("divPlayerItemCraft", "");
-    defUpdateElement("divPlayerItemCraftItemIngredients", "");
-  } //if
-
+  //CRAFTING
+  guiUpdateCrafting();
   //MAP
   defUpdateElement("divGrid", guiMapShow(JSONplayer[0].gridPositionCurrent));
   //FUNCTIONALITY
@@ -45,7 +36,7 @@ function guiGetHTMLTextRoom() {
   strTemp += "<br><br>";
   strTemp += JSONroom[gridGetRoomFromGridPosition(JSONplayer[0].gridPositionCurrent)].description;
   strTemp += "</p>";
-  return strTemp;TODO
+  return strTemp;
 } //function
 
 function guiGetHTMLTextRoomItem() {
@@ -53,10 +44,6 @@ function guiGetHTMLTextRoomItem() {
   if (JSONroom[gridGetRoomFromGridPosition(JSONplayer[0].gridPositionCurrent)].item.length > 0) { //if have items
     strTemp += "<p>";
     strTemp += JSONconfig[0].txtRoomItemVisible;
-    // for (i in JSONroom[gridGetRoomFromGridPosition(JSONplayer[0].gridPositionCurrent)].item) {
-    //   strTemp += "<br>";
-    //   strTemp += JSONconfig[0].txtRoomItemPrefix + JSONitem[JSONroom[gridGetRoomFromGridPosition(JSONplayer[0].gridPositionCurrent)].item[i]].name + "("+JSONitem[JSONroom[gridGetRoomFromGridPosition(JSONplayer[0].gridPositionCurrent)].item[i]].description+")";
-    // } //for
     strTemp += "</p>";
   } //if
   return strTemp;
@@ -66,7 +53,6 @@ function guiButtonDirectionUpdate(intGridPosition) {
   var intGridPositionsCurrent = [];
   var intGridRowCurrent = 0;
   var intGridColumnCurrent = 0;
-  // var arrDirection = ["N","E","S","W"];
   for (var i=0;i<arrDirection.length;i++) {
     if (gridCheckIfOffGrid(arrDirection[i], intGridPosition) == true) {
       document.getElementById("butMapMove" + arrDirection[i]).disabled = true;
@@ -79,6 +65,16 @@ function guiButtonDirectionUpdate(intGridPosition) {
         document.getElementById("butMapMove" + arrDirection[i]).disabled = true;
     } //if
   } //for
+} //function
+
+
+
+function guiGetHTMLInteractionsRoom(intRoom) {
+  var strTemp = "";
+  for (i in JSONroom[intRoom].interaction) {
+    strTemp += '<img title="" data-itemID='+JSONroom[intRoom].interaction[i]+' data-itemLocation="room" class="draggable" src="'+JSONitem[JSONroom[intRoom].interaction[i]].image+'" alt="'+JSONitem[JSONroom[intRoom].interaction[i]].name+'">';
+  } //for
+  return strTemp;
 } //function
 
 function guiGetHTMLItemRoom(intRoom) {
@@ -116,7 +112,11 @@ function guiCreateHTMLComboBoxItem(JSONtoUse, strID) {
       strTemp += "<option value='" + JSONtoUse[i] + "'>" + JSONitem[JSONtoUse[i]].name + "</option>";
     } else {
       //to craft
-      strTemp += "<option value='" + JSONtoUse[i][0] + "'>" + JSONitem[JSONtoUse[i][0]].quantity + " x " + JSONitem[JSONtoUse[i][0]].name + "</option>";
+      if (defArrayCheckIfUndefined(JSONitem, JSONtoUse[i][0], "quantity"))
+        strTemp += "<option value='" + JSONtoUse[i][0] + "'>1 x " + JSONitem[JSONtoUse[i][0]].name + "</option>";
+      else
+        strTemp += "<option value='" + JSONtoUse[i][0] + "'>" + JSONitem[JSONtoUse[i][0]].quantity + " x " + JSONitem[JSONtoUse[i][0]].name + "</option>";
+
     } //if
   } //for
   strTemp += "</select>";
@@ -148,10 +148,10 @@ function guiCreateDragDrop() {
     ,snap:'.ui-droppable'
     ,snapMode:'inner'
     ,position: 'center'
-  });
+  }); //draggable
   $(".droppable").droppable({
     hoverClass: "droppable-highlight"
-  });
+  }); //droppable
 
   $(".draggable").tooltip({
     track: true
@@ -162,14 +162,14 @@ function guiCreateDragDrop() {
     ,close: function() {
       $("div.ui-helper-hidden-accessible").remove(); //for ui bug
     } //close
-  });
+  }); //draggable
 
   $("body").droppable({
     drop: function(event, ui) {
       $("div.ui-tooltip").remove(); //for ui bug
       // console.log("dropped somewhere");
     } //drop
-  });
+  }); //droppable
   $("#dropPickUp").droppable({
     classes: {
        "ui-droppable-hover": "ui-state-hover"
@@ -181,8 +181,8 @@ function guiCreateDragDrop() {
       } else {
         console.log("Can't pick up");
       } //if
-    } //drop
-  });
+    } //drop: function(event, ui)
+  }); //droppable
   $("#dropDrop").droppable({
     drop: function(event, ui) {
       if (ui.draggable.attr("data-itemLocation") == "player") { //has to be in player's possesion
@@ -192,16 +192,27 @@ function guiCreateDragDrop() {
       } else
         console.log("Can't drop");
     } //drop
-  });
+  }); //droppable
   $("#dropUse").droppable({
     drop: function(event, ui) {
       if (ui.draggable.attr("data-itemLocation") == "player") { //has to be in player's possesion
         itemUse(ui.draggable.attr("data-itemID"));
         // console.log("Used");
       } else
-        console.log("Can't use");
+        console.log("Pick up the item first before you use it");
     } //drop
-  });
+  }); //droppable
+
+  $("#dropInteract").droppable({
+    drop: function(event, ui) {
+      if ((ui.draggable.attr("data-itemLocation") == "room") && (!defArrayCheckIfUndefined(JSONitem, ui.draggable.attr("data-itemID"), "itemInteract"))) { //has to be in player's possesion
+        itemInteract(ui.draggable.attr("data-itemID"));
+        console.log("Interact");
+      } else
+        console.log("Can't interact");
+    } //drop
+  }); //droppable
+
 } //function
 
 function guiMapShow(intRoom) {
@@ -241,4 +252,27 @@ function guiMapShow(intRoom) {
   } //for
   strTemp += '</div><!-- divTable -->';
   return strTemp;
+} //function
+
+function guiGetHTMLItemHowToCraft() {
+  var strTemp = "";
+  strTemp += '<p>You know how to craft the following:</p>';
+  for (i in JSONplayer[0].itemHowToCraft) {
+    strTemp += '<p>' + JSONitem[JSONplayer[0].itemHowToCraft[i]].name + '</p>';
+  } //for
+  return strTemp;
+} //function
+
+function guiUpdateCrafting() {
+  if (itemCraftCheck().length != 0) {
+    defUpdateElement("divPlayerItemCraft", "<p>"+JSONconfig[0].txtTitleItemToCraft+"</p>" + guiCreateHTMLComboBoxItem(itemCraftCheck(), "selPlayerItemCraft"));
+    $("#selPlayerItemCraft").change();
+  } else {
+    defUpdateElement("divPlayerItemCraft", "");
+    defUpdateElement("divPlayerItemCraftItemIngredients", "");
+  } //if
+  if (JSONplayer[0].itemHowToCraft.length != 0)
+    defUpdateElement("divPlayerItemHowToCraft", guiGetHTMLItemHowToCraft());
+  else
+    defUpdateElement("divPlayerItemHowToCraft", "");
 } //function

@@ -4,7 +4,9 @@ var JSONconfig = [{
   ,"gridCreateColumn" : 10
   //GAME TEXT
   ,"txtMove"            : "You entered the"
-  ,"txtRoomItemVisible" : "You can see"
+  //ROOM
+  ,"txtRoomItemInteraction" : "You can interact with the following:"
+  ,"txtRoomItemVisible" : "You can pick up the following:"
   ,"txtRoomItemPrefix"  : "-"
   //ITEMS
   ,"txtTitleItemToCraft"            : "Can Craft"

@@ -44,6 +44,15 @@
         <span id="spnTextRoomDesc"></span>
         <span id="spnTextRoomDescItem"></span>
         <div id="divRoomGetItemButton"></div>
+        <div id="divRoomGetInteractions"></div>
+    
+        <!-- DRAG & DROP -->
+        <div class="divTable">
+          <div class="divRow">
+            <div id="dropPickUp" class="divCell droppable">Pick up</div>
+            <div id="dropInteract" class="divCell droppable">Interact</div>
+          </div><!-- divRow -->
+        </div><!-- divTable -->
 
       </div><!-- divCell -->
       <div class="divCell">
@@ -84,7 +93,6 @@
         <!-- DRAG & DROP -->
         <div class="divTable">
           <div class="divRow">
-            <div id="dropPickUp" class="divCell droppable">Pick up</div>
             <div id="dropDrop" class="divCell droppable">Drop</div>
             <div id="dropUse" class="divCell droppable">Use</div>
           </div><!-- divRow -->
@@ -102,6 +110,9 @@
         </select>
         <button onClick="defaultArrayOrder(JSONplayer[0].item);">Sort array</button><br>
 
+        <br>
+        <div id="divPlayerItemHowToCraft"></div>
+        <br>
         <div id="divPlayerItemCraft"></div>
         <div id="divPlayerItemCraftItemIngredients"></div>
 
@@ -120,7 +131,6 @@
       </div><!-- divCell -->
     </div><!-- divRow -->
   </div><!-- divTable -->
-
 
 
   <br><br>

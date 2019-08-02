@@ -30,6 +30,12 @@ Tier 1 item - Crafted from Tier 0 item ONLY
 Tier 2 item - Crafted from a Tier 0 AND Tier 1
 Tier 3 item - Crafted from a Tier 1 AND Tier 2
 
+
+
+!!! IMPORTANT !!!
+  properties not exisiting determines how to use (function itemUse)
+
+
 */
 
 var JSONitem = [
@@ -40,16 +46,12 @@ var JSONitem = [
     ,"image"            : "_images/item/map.png"
     ,"itemIngredient1"  : []
     ,"itemIngredient2"  : []
-    ,"quantity"         : 1
-    ,"itemHowToCraft"   : 0 //for HowTo books only
   },{ //1
     "name"              : "Full bottle of whiskey"
     ,"description"      : "An unopened bottle of 12 year old whiskey"
     ,"image"            : "_images/item/bottle-whiskey-full.png"
     ,"itemIngredient1"  : []
     ,"itemIngredient2"  : []
-    ,"quantity"         : 1
-    ,"itemHowToCraft"   : 0 //for HowTo books only
   },{ //2
     "name"              : "Half bottle of whiskey"
     ,"description"      : "A half bottle of 12 year old whiskey"
@@ -57,15 +59,13 @@ var JSONitem = [
     ,"itemIngredient1"  : [21]
     ,"itemIngredient2"  : [1]
     ,"quantity"         : 2 //only if crafted
-    ,"itemHowToCraft"   : 0 //for HowTo books only
   },{ //3
     "name"              : "Full bottle of vodka"
     ,"description"      : "An unopened bottle of Russian vodka"
     ,"image"            : "_images/item/bottle-vodka-full.png"
     ,"itemIngredient1"  : []
     ,"itemIngredient2"  : []
-    ,"quantity"         : 1
-    ,"itemHowToCraft"   : 0 //for HowTo books only
+//    ,"quantity"         : 1
   },{ //4
     "name"              : "Half bottle of vodka"
     ,"description"      : "A half bottle of Russian vodka"
@@ -73,15 +73,12 @@ var JSONitem = [
     ,"itemIngredient1"  : [21]
     ,"itemIngredient2"  : [3]
     ,"quantity"         : 2 //only if crafted
-    ,"itemHowToCraft"   : 0 //for HowTo books only
   },{ //5
     "name"              : "Full bottle of brandy"
     ,"description"      : "An unopened bottle of expensive brandy"
     ,"image"            : "_images/item/bottle-brandy-full.png"
     ,"itemIngredient1"  : []
     ,"itemIngredient2"  : []
-    ,"quantity"         : 1
-    ,"itemHowToCraft"   : 0 //for HowTo books only
   },{ //6
     "name"              : "Half bottle of brandy"
     ,"description"      : "A half bottle of expensive brandy"
@@ -89,199 +86,150 @@ var JSONitem = [
     ,"itemIngredient1"  : [21]
     ,"itemIngredient2"  : [5]
     ,"quantity"         : 2 //only if crafted
-    ,"itemHowToCraft"   : 0 //for HowTo books only
   },{ //7
     "name"              : ""
     ,"description"      : ""
     ,"image"            : "_images/image.png"
     ,"itemIngredient1"  : []
     ,"itemIngredient2"  : []
-    ,"quantity"         : 1
-    ,"itemHowToCraft"   : 0 //for HowTo books only
   },{ //8
     "name"              : ""
     ,"description"      : ""
     ,"image"            : "_images/image.png"
     ,"itemIngredient1"  : []
     ,"itemIngredient2"  : []
-    ,"quantity"         : 1
-    ,"itemHowToCraft"   : 0 //for HowTo books only
   },{ //9
     "name"              : ""
     ,"description"      : ""
     ,"image"            : "_images/image.png"
     ,"itemIngredient1"  : []
     ,"itemIngredient2"  : []
-    ,"quantity"         : 1
-    ,"itemHowToCraft"   : 0 //for HowTo books only
   },{ //10
     "name"              : ""
     ,"description"      : ""
     ,"image"            : "_images/image.png"
     ,"itemIngredient1"  : []
     ,"itemIngredient2"  : []
-    ,"quantity"         : 1
-    ,"itemHowToCraft"   : 0 //for HowTo books only
   },{ //11
     "name"              : "Bedsheets"
     ,"description"      : "Clean bedsheets"
     ,"image"            : "_images/item/bedsheets.png"
     ,"itemIngredient1"  : []
     ,"itemIngredient2"  : []
-    ,"quantity"         : 1
-    ,"itemHowToCraft"   : 0 //for HowTo books only
   },{ //12
     "name"              : "Dishcloth"
     ,"description"      : "A dirty dishcloth"
     ,"image"            : "_images/item/dishcloth.png"
     ,"itemIngredient1"  : []
     ,"itemIngredient2"  : []
-    ,"quantity"         : 1
-    ,"itemHowToCraft"   : 0 //for HowTo books only
   },{ //13
     "name"              : "Rag"
     ,"description"      : "An oily rag"
     ,"image"            : "_images/item/rag.png"
     ,"itemIngredient1"  : []
     ,"itemIngredient2"  : []
-    ,"quantity"         : 1
-    ,"itemHowToCraft"   : 0 //for HowTo books only
   },{ //14
     "name"              : "Socks"
     ,"description"      : "A pair of sports socks"
     ,"image"            : "_images/item/socks.png"
     ,"itemIngredient1"  : []
     ,"itemIngredient2"  : []
-    ,"quantity"         : 1
-    ,"itemHowToCraft"   : 0 //for HowTo books only
   },{ //15
     "name"              : "Underwear"
     ,"description"      : "Some soiled underwear"
     ,"image"            : "_images/item/underwear.png"
     ,"itemIngredient1"  : []
     ,"itemIngredient2"  : []
-    ,"quantity"         : 1
-    ,"itemHowToCraft"   : 0 //for HowTo books only
   },{ //16
     "name"              : "Towel"
     ,"description"      : "A bathroom towel"
     ,"image"            : "_images/item/towel.png"
     ,"itemIngredient1"  : []
     ,"itemIngredient2"  : []
-    ,"quantity"         : 1
-    ,"itemHowToCraft"   : 0 //for HowTo books only
   },{ //17
     "name"              : "T-Shirt"
     ,"description"      : "A clean white t-shirt"
     ,"image"            : "_images/item/tshirt.png"
     ,"itemIngredient1"  : []
     ,"itemIngredient2"  : []
-    ,"quantity"         : 1
-    ,"itemHowToCraft"   : 0 //for HowTo books only
   },{ //18
     "name"              : "Newspaper"
     ,"description"      : "Yesterday's newspaper"
     ,"image"            : "_images/item/newspaper.png"
     ,"itemIngredient1"  : []
     ,"itemIngredient2"  : []
-    ,"quantity"         : 1
-    ,"itemHowToCraft"   : 0 //for HowTo books only
   },{ //19
     "name"              : "Tea towel"
     ,"description"      : "A kitchen tea towel"
     ,"image"            : "_images/item/teatowel.png"
     ,"itemIngredient1"  : []
     ,"itemIngredient2"  : []
-    ,"quantity"         : 1
-    ,"itemHowToCraft"   : 0 //for HowTo books only
   },{ //20
     "name"              : ""
     ,"description"      : ""
     ,"image"            : "_images/image.png"
     ,"itemIngredient1"  : []
     ,"itemIngredient2"  : []
-    ,"quantity"         : 1
-    ,"itemHowToCraft"   : 0 //for HowTo books only
   },{ //21
     "name"              : "Empty bottle"
   	,"description"      : "An empty glass bottle"
     ,"image"            : "_images/item/bottle-empty.png"
     ,"itemIngredient1"  : []
     ,"itemIngredient2"  : []
-    ,"quantity"         : 1
-    ,"itemHowToCraft"   : 0 //for HowTo books only
   },{ //22
     "name"              : "Vase"
     ,"description"      : "An flowerless vase"
     ,"image"            : "_images/item/vase.png"
     ,"itemIngredient1"  : []
     ,"itemIngredient2"  : []
-    ,"quantity"         : 1
-    ,"itemHowToCraft"   : 0 //for HowTo books only
   },{ //23
     "name"              : "Empty Jar"
     ,"description"      : "Someone has eaten all of the jam from this jar"
     ,"image"            : "_images/item/jar.png"
     ,"itemIngredient1"  : []
     ,"itemIngredient2"  : []
-    ,"quantity"         : 1
-    ,"itemHowToCraft"   : 0 //for HowTo books only
   },{ //24
     "name"              : "Empty water bottle"
     ,"description"      : "An empty water bottle"
     ,"image"            : "_images/item/bottle-water.png"
     ,"itemIngredient1"  : []
     ,"itemIngredient2"  : []
-    ,"quantity"         : 1
-    ,"itemHowToCraft"   : 0 //for HowTo books only
   },{ //25
     "name"              : "Glass cup"
     ,"description"      : "An empty glass cup"
     ,"image"            : "_images/item/cup-glass.png"
     ,"itemIngredient1"  : []
     ,"itemIngredient2"  : []
-    ,"quantity"         : 1
-    ,"itemHowToCraft"   : 0 //for HowTo books only
   },{ //26
     "name"              : ""
     ,"description"      : ""
     ,"image"            : "_images/image.png"
     ,"itemIngredient1"  : []
     ,"itemIngredient2"  : []
-    ,"quantity"         : 1
-    ,"itemHowToCraft"   : 0 //for HowTo books only
   },{ //27
     "name"              : ""
     ,"description"      : ""
     ,"image"            : "_images/image.png"
     ,"itemIngredient1"  : []
     ,"itemIngredient2"  : []
-    ,"quantity"         : 1
-    ,"itemHowToCraft"   : 0 //for HowTo books only
   },{ //28
     "name"              : ""
     ,"description"      : ""
     ,"image"            : "_images/image.png"
     ,"itemIngredient1"  : []
     ,"itemIngredient2"  : []
-    ,"quantity"         : 1
-    ,"itemHowToCraft"   : 0 //for HowTo books only
   },{ //29
     "name"              : ""
     ,"description"      : ""
     ,"image"            : "_images/image.png"
     ,"itemIngredient1"  : []
     ,"itemIngredient2"  : []
-    ,"quantity"         : 1
-    ,"itemHowToCraft"   : 0 //for HowTo books only
   },{ //30
     "name"              : ""
     ,"description"      : ""
     ,"image"            : "_images/image.png"
     ,"itemIngredient1"  : []
     ,"itemIngredient2"  : []
-    ,"quantity"         : 1
-    ,"itemHowToCraft"   : 0 //for HowTo books only
   },{ //31
     "name"              : "Molotov Cocktail"
     ,"description"      : "A throwing weapon"
@@ -289,8 +237,6 @@ var JSONitem = [
     ,"itemIngredient1"  : [1,2,3,4,5,6] //flammable fluids
     ,"itemIngredient2"  : [0,11,12,13,14,15,16,17,18,19] //materials
     ,"itemUse"          : 32
-    ,"quantity"         : 1
-    ,"itemHowToCraft"   : 0 //for HowTo books only
   },{ //32
     "name"              : "Lighter"
     ,"description"      : "A zippo"
@@ -298,8 +244,6 @@ var JSONitem = [
     ,"itemIngredient1"  : []
     ,"itemIngredient2"  : []
     ,"itemUse"          : false
-    ,"quantity"         : 1
-    ,"itemHowToCraft"   : 0 //for HowTo books only
   },{ //33
     "name"              : "Book"
     ,"description"      : "How to create a... Molotov Cocktail"
@@ -307,35 +251,51 @@ var JSONitem = [
     ,"itemIngredient1"  : []
     ,"itemIngredient2"  : []
     ,"itemUse"          : true
-    ,"quantity"         : 1
     ,"itemHowToCraft"   : 31 //item you can now craft after reading
-  },{ //???
+  },{ //34
     "name"              : "Book"
     ,"description"      : "How to create a... Half bottle of whiskey"
     ,"image"            : "_images/item/book.png"
     ,"itemIngredient1"  : []
     ,"itemIngredient2"  : []
     ,"itemUse"          : true
-    ,"quantity"         : 1
     ,"itemHowToCraft"   : 2 //item you can now craft after reading
-  },{ //???
+  },{ //35
     "name"              : "Book"
     ,"description"      : "How to create a... Half bottle of vodka"
     ,"image"            : "_images/item/book.png"
     ,"itemIngredient1"  : []
     ,"itemIngredient2"  : []
     ,"itemUse"          : true
-    ,"quantity"         : 1
     ,"itemHowToCraft"   : 4 //item you can now craft after reading
-  },{ //???
+  },{ //36
     "name"              : "Book"
     ,"description"      : "How to create a... Half bottle of brandy"
     ,"image"            : "_images/item/book.png"
     ,"itemIngredient1"  : []
     ,"itemIngredient2"  : []
     ,"itemUse"          : true
-    ,"quantity"         : 1
     ,"itemHowToCraft"   : 6 //item you can now craft after reading
+  },{ //37
+    "name"                  : "Backpack"
+    ,"description"          : "Increases your carry capacity"
+    ,"image"                : "_images/item/backpack.png"
+    ,"itemIngredient1"      : []
+    ,"itemIngredient2"      : []
+    ,"itemUse"              : true
+    ,"playerProperty"       : "carryLimit"
+    ,"playerPropertyValue"  : 10
+  }
+
+
+// INTERACTIONS
+  ,{ //38
+    "name"                  : "Lightswitch"
+    ,"description"          : "Switches the lights on or off"
+    ,"image"                : "_images/item/lightswitch.png"
+    ,"itemIngredient1"      : []
+    ,"itemIngredient2"      : []
+    ,"itemInteract"         : true
   }
 
 
@@ -357,7 +317,7 @@ var JSONitem = [
   //   ,"itemIngredient2"         : []
   // },{ //2
   //   "name"          : "Full whiskey bottle"
-  // 	,"description"  : "itemIngredient2desc"
+  // 	,"de  scription"  : "itemIngredient2desc"
   //   ,"image"        : "_images/item/bottle2.png"
   //   ,"itemIngredient1"         : []
   //   ,"itemIngredient2"         : []

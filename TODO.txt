@@ -20,14 +20,6 @@ Strength determines damage of crafted item
 
 Break down items (chair to wooden bits ???)
 
-
-  Full bottle of ???
-  Half full bottle of ???
-Empty bottle
-Vase
-Glass
-
-
 Table cloth
 Tea towel
 Bed sheet
@@ -68,9 +60,6 @@ slingshot
 enemies in rooms
   snake - need anti venom to heal
 
-MAP only remembers X rooms?
-
-paint - mark rooms
 repair tool
 energy
 

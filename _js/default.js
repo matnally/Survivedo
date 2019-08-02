@@ -1,5 +1,5 @@
 
-//TODO: clean up
+//TODO: clean up?
 function defaultArrayOrder(JSONtoUse) {
   JSONtoUse = JSONtoUse.sort(defaultArrayOrderSort(document.getElementById("selArrayOrderItemKey").value, document.getElementById("selArrayOrderItemOrder").value));
   gameActionEnd();
@@ -7,28 +7,20 @@ function defaultArrayOrder(JSONtoUse) {
 function defaultArrayOrderSort(key, order) {
   return function(a, b) {
     if(!JSONitem[a].hasOwnProperty(key) || !JSONitem[b].hasOwnProperty(key)) return 0; // property doesn't exist on either object
-
     const varA = (typeof JSONitem[a][key] === 'string') ? JSONitem[a][key].toUpperCase() : JSONitem[a][key];
     const varB = (typeof JSONitem[b][key] === 'string') ? JSONitem[b][key].toUpperCase() : JSONitem[b][key];
-
     let comparison = 0;
     if (varA > varB) comparison = 1;
     else if (varA < varB) comparison = -1;
-
     return ((order == 'desc') ? (comparison * -1) : comparison);
   }; //return function(a, b)
 } //function
 
 
-
-
-
-
-
-
-
-
-
+function defArrayCheckIfUndefined(arrTemp, intIndex1, intIndex2) {
+  //TODO: better way of doing this?
+  try { return arrTemp[intIndex1][intIndex2] === undefined; } catch(e) { return true; } //true = undefined
+} //function
 
 function defUpdateElement(elemName, strTemp) {
   document.getElementById(elemName).innerHTML = strTemp;
@@ -36,10 +28,6 @@ function defUpdateElement(elemName, strTemp) {
 
 function defJSONshow(strJSON) { //ADMIN
   console.log(JSON.stringify(window[strJSON]));
-} //function
-
-function defArrayCheckIfUndefined(arrTemp, intIndex1, intIndex2) {
-  try { return arrTemp[intIndex1][intIndex2] === undefined; } catch(e) { return true; }
 } //function
 
 function defGetPlayerItemRelevant(arrTemp) { //returns arr item ingredients that player possesses
@@ -60,11 +48,7 @@ function getRandomInt(min, max) {
 
 
 
-
-
-
 //TODO: refactor to one function?
-
 function defArrayRemoveDuplicatesCraft(JSONtoUse) {
   var arrTemp = [];
   var carr = [];
@@ -78,7 +62,6 @@ function defArrayRemoveDuplicatesCraft(JSONtoUse) {
   } //for
   return arrTemp;
 } //function
-
 function defArrayRemoveDuplicatesIngredients(JSONtoUse) {
   //TODO: testing!
   var arrTemp = [];

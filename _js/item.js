@@ -16,23 +16,38 @@ function itemDistributeRoom() {
   } //for
 } //function
 
+function itemCheckCanPickUp(intItem) {
+  var boolTemp = true;
+  switch(true) {
+    case (JSONitem[intItem].itemInteract):
+      boolTemp = false;
+    break;
+    default:
+  } //switch
+  return boolTemp;
+} //function
+
 function itemPickUp(intItem) {
-  if (JSONplayer[0].item.length >= JSONgame[0].carryLimit) {
-    alert("Can't pick up as you have reached your carry limit of " + JSONgame[0].carryLimit);
+  if (JSONplayer[0].item.length >= JSONplayer[0].carryLimit) {
+    alert("Can't pick up as you have reached your carry limit of " + JSONplayer[0].carryLimit);
   } else {
-    for (r in JSONroom) {
-      if (JSONroom[r].name == JSONroom[gridGetRoomFromGridPosition(JSONplayer[0].gridPositionCurrent)].name) {
-        //same room
-        for (i in JSONroom[r].item) {
-          if (JSONroom[r].item[i] == intItem) {
-            JSONplayer[0].item.push(JSONroom[r].item[i]); //add item to player
-            JSONroom[r].item.splice(i, 1); //remove item from room
-            break; //for quantities TODO sloppy
-          } //if
-        } //for
-      } //if
-    } //for
-    gameActionEnd();
+    if (itemCheckCanPickUp(intItem)) {
+      for (r in JSONroom) {
+        if (JSONroom[r].name == JSONroom[gridGetRoomFromGridPosition(JSONplayer[0].gridPositionCurrent)].name) {
+          //same room
+          for (i in JSONroom[r].item) {
+            if (JSONroom[r].item[i] == intItem) {
+              JSONplayer[0].item.push(JSONroom[r].item[i]); //add item to player
+              JSONroom[r].item.splice(i, 1); //remove item from room
+              break; //for quantities TODO sloppy
+            } //if
+          } //for
+        } //if
+      } //for
+      gameActionEnd();
+    } else {
+      console.log("Can't pick up this item");
+    } //if
   } //if
 } //function
 
@@ -53,14 +68,19 @@ function itemRemoveFromPlayer(intItem) {
 
 function itemCraftIt(intItem, intitemIngredient1, intitemIngredient2) { //calling function itemCraft returns error!
 
-  console.log("intItem: " + intItem);
+  var intQuantity = 1;
+
   if (!itemExistsInArray(JSONplayer[0].itemHowToCraft, intItem)) {
     console.log("you do not know how to craft this item yet!");
   } else {
     //able to craft
     itemRemoveFromPlayer(intitemIngredient1); //two loops as splice changes array
     itemRemoveFromPlayer(intitemIngredient2); //two loops as splice changes array
-    for (var a=0;a<JSONitem[intItem].quantity;a++) {
+
+    if (!defArrayCheckIfUndefined(JSONitem, intItem, "quantity"))
+      intQuantity = JSONitem[intItem].quantity;
+
+    for (var a=0;a<intQuantity;a++) {
       JSONplayer[0].item.push(intItem); //add item to player
     } //for
     console.log("Crafted " + JSONitem[intItem].name + " using " + JSONitem[intitemIngredient1].name + " and " + JSONitem[intitemIngredient2].name);
@@ -69,82 +89,49 @@ function itemCraftIt(intItem, intitemIngredient1, intitemIngredient2) { //callin
 
 } //function
 
-
-
-
-
-
-
-
-
-
-
 function itemUse(intItem) {
 
-  if (JSONitem[intItem].itemHowToCraft) {
-    itemUseHowToBook(intItem); //how to book
-  } else {
-    itemUseNormal(intItem); //normal item
-  } //if
+  var boolDidSomething = false;
 
-} //function
-
-function itemUseHowToBook(intItem) {
-  JSONplayer[0].itemHowToCraft.push(JSONitem[intItem].itemHowToCraft);
-  itemRemoveFromPlayer(intItem);
-  console.log("Added knowledge of how to create a " + JSONitem[JSONitem[intItem].itemHowToCraft].name);
-  console.log("You discard the book after reading");
-  gameActionEnd();
-} //function
-
-function itemUseNormal(intItem) {
-
-  var boolTemp = false;
-
-  if (!itemExistsInArray(JSONplayer[0].itemHowToCraft, JSONitem[intItem].itemHowToCraft)) {
-    console.log("you do not know how to craft this yet!");
-  } else {
-    //check if they actually use it
-    switch(true) {
-      case (itemExistsInArray(JSONplayer[0].item, JSONitem[intItem].itemUse) == true):
-        console.log("itemExistsInPlayer");
-        boolTemp = true;
-      break;
-      case (JSONitem[intItem].itemUse == true):
-        console.log("JSONitem[intItem].itemUse");
-        boolTemp = true;
-      break;
-      case (!JSONitem[intItem].itemUse):
-        console.log("!JSONitem[intItem].itemUse");
-        boolTemp = true;
-      break;
-      default:
-        console.log("itemUse-switch-default");
-    } //switch
-
-    if (boolTemp == true) {
-      //able to use
+  switch(false) {
+    case (defArrayCheckIfUndefined(JSONitem, intItem, "itemHowToCraft")):
+      //BOOK
+      JSONplayer[0].itemHowToCraft.push(JSONitem[intItem].itemHowToCraft);
+      console.log("Added knowledge of how to create a " + JSONitem[JSONitem[intItem].itemHowToCraft].name);
+      console.log("You discard the book after reading");
+      boolDidSomething = true;
+    break;
+    case (defArrayCheckIfUndefined(JSONitem, intItem, "playerProperty")):
+      //ITEM AFFECTS PLAYER IN SOME WAY
+      JSONplayer[0][JSONitem[intItem].playerProperty] += JSONitem[intItem].playerPropertyValue;
+      console.log("Used " + JSONitem[intItem].name + " affect " + JSONitem[intItem].playerProperty + " by " + JSONitem[intItem].playerPropertyValue);
+      boolDidSomething = true;
+    break;
+    case (defArrayCheckIfUndefined(JSONitem, intItem, "itemUse")):
+      //NORMAL USEABLE ITEM
+      console.log("useable");
       if ((itemExistsInArray(JSONplayer[0].item, JSONitem[intItem].itemUse)) || (!JSONitem[intItem].itemUse)) {
-        console.log("Use " + JSONitem[intItem].name);
-        itemRemoveFromPlayer(intItem);
-        gameActionEnd();
+        console.log("You use " + JSONitem[intItem].name);
+        boolDidSomething = true;
       } else {
         console.log("You can't use " + JSONitem[intItem].name + " because you don't have " + JSONitem[JSONitem[intItem].itemUse].name);
       } //if
-    } //if
+    break;
+    default:
+      console.log("You can't use " + JSONitem[intItem].name);
+  } //switch
 
+  if (boolDidSomething == true) {
+    //something was used in someway, so remove and update
+    itemRemoveFromPlayer(intItem);
+    gameActionEnd();
   } //if
 
 } //function
 
-
-
-
-
-
-
-
-
+function itemInteract(intItem) {
+  console.log("You interact with " + JSONitem[intItem].name);
+} //function
 
 
 //////////////////////////
@@ -174,7 +161,12 @@ function itemCraftCheck() {
   for (i in arritemIngredient1) {
     for (ii in arritemIngredient2) {
       if (arritemIngredient1[i][0] == arritemIngredient2[ii][0]) {
-        arrTemp.push([parseInt(arritemIngredient1[i][0]), parseInt(arritemIngredient1[i][1]), parseInt(arritemIngredient2[ii][1])]);
+        //only push items that you know how to craft
+        for (x in arritemIngredient1) {
+          if (itemExistsInArray(JSONplayer[0].itemHowToCraft, arritemIngredient1[x][0])) {
+            arrTemp.push([parseInt(arritemIngredient1[x][0]), parseInt(arritemIngredient1[i][1]), parseInt(arritemIngredient2[ii][1])]);
+          } //if
+        } //for
       } //if
     } //for
   } //for
@@ -184,7 +176,8 @@ function itemCraftCheck() {
 function itemExistsInArray(JSONtoUse, intItem) {
   var boolTemp = false;
   for (i in JSONtoUse) {
-    if (JSONtoUse[i] == intItem) {
+    if (parseInt(JSONtoUse[i]) == parseInt(intItem)) {
+      // console.log(JSONtoUse[i] + " is equal to " + parseInt(intItem));
       boolTemp = true;
     } //if
   } //for
